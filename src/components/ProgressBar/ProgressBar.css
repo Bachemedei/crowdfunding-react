@@ -3,18 +3,17 @@
     width: 100%;
     background-color: #e0e0de;
     border-radius: 50px;
-    margin: 50px;
 }
 
 .progress-complete{
     height: 100%;
     background-color: green;
     border-radius: inherit;
-    text-align: right;
+    text-align: center;
 }
 
 .progress-label{
     padding: 5px;
-    color: white;
+    color: black;
     font-weight: bold;
 }

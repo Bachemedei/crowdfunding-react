@@ -1,17 +1,18 @@
 import React from "react";
-import "./ProgressBar.css"
+import "./ProgressBar.css";
 
-function ProgressBar({ amountRemaining }) {
-    console.log(amountRemaining)
-    const progressStyle = {
-        width: amountRemaining
-    }
+function ProgressBar({ percentComplete }) {
+  console.log(percentComplete);
+  const progressStyle = {
+    width: `${percentComplete}%`,
+  };
 
   return (
-    <div className="progress-bar">
-      <div className="progress-complete" style={progressStyle}>
-        <span className="progress-label">{amountRemaining}%</span>
+    <div>
+      <div className="progress-bar">
+        <div className="progress-complete" style={progressStyle}></div>
       </div>
+      <span className="progress-label">{percentComplete}% of goal reached!</span>
     </div>
   );
 }

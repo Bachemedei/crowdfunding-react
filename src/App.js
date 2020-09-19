@@ -7,6 +7,28 @@ import Header from "./components/Header/Header"
 import "./App.css";
 
 function App() {
+  // Variables 
+
+  // Helpers
+  const convertDateTime = (isoDate) => {
+    const date = new Date(isoDate)
+    const year = date.getFullYear()
+    let month = date.getMonth()+1
+    let day = date.getDate();
+
+    if (day < 10) {
+      day = "0" + day;
+    }
+    if (month < 10) {
+      month = "0" + month;
+    }
+    const formattedDate = day + "-" + month + "-" + year
+    return formattedDate
+  }
+
+  //Methods
+
+  //Template
   return (
     <Router>
     <Route path="/">
@@ -17,10 +39,10 @@ function App() {
 
         <Switch>
           <Route path="/project">
-            <ProjectPage />
+            <ProjectPage convertDateTime={convertDateTime} />
           </Route>
           <Route path="/">
-            <Home />
+            <Home convertDateTime={convertDateTime} />
           </Route>
         </Switch>
       </div>

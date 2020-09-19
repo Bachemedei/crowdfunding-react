@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom"
 import "./ProjectCard.css"
 
-function ProjectCard({ projectData }) {
+function ProjectCard({ projectData, convertDateTime }) {
     return (
         <div>
             <Link className="project-card" to="/project">
@@ -12,6 +12,7 @@ function ProjectCard({ projectData }) {
                     <h4>{projectData.shelter}</h4>
                     <h4>{projectData.species}</h4>
                     <h4>Goal: {projectData.goal}</h4>
+                    <h4>Date Opened: {convertDateTime = convertDateTime(projectData.date_created)}</h4>
                 </div>
 
             </Link>
