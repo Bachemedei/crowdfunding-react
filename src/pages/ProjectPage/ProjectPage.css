@@ -1,0 +1,9 @@
+.project-summary {
+    margin-top: 3vw;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.project-img {
+    margin-right: 2vw;
+}
