@@ -1,5 +1,6 @@
 import React from "react";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
+import TitleText from "../../components/TitleText/TitleText";
 import { oneProject } from "../../data";
 import "./ProjectPage.css";
 
@@ -7,6 +8,7 @@ function ProjectPage({ convertDateTime }) {
   // Template
   return (
     <div className="project-detail">
+    <TitleText title={oneProject.title} />
       <div className="project-summary">
         <img
           className="project-img"
@@ -14,7 +16,6 @@ function ProjectPage({ convertDateTime }) {
           alt={oneProject.title}
         />
         <div className="project-info">
-          <p>{oneProject.title}</p>
           <p>{oneProject.shelter}</p>
           <p>{`Status: ${oneProject.is_open}`}</p>
           <ProgressBar data={oneProject}/>

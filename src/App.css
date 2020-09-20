@@ -3,6 +3,8 @@ html {
     background: #efe9e9;
     font-family: 'Roboto', sans-serif;
     font-size: 2vw;
+    margin: 6vw;
+    margin-top: 2vw;
 }
 
 a {
@@ -11,6 +13,8 @@ a {
 }
 
 .contents {
-    margin: 6vw;
-    /* background-color: white; */
+    background-color: white;
+    padding: 2vw;
+    margin: 3vw;
+    border-radius: 0.3em;
 }

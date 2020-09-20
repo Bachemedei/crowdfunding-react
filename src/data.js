@@ -89,3 +89,22 @@ export const oneProject = {
     },
   ],
 };
+
+export const petCategories = [
+  {
+    id: 1,
+    petspecies: "Cat",
+  },
+  {
+    id: 2,
+    petspecies: "Dog",
+  },
+  {
+    id: 3,
+    petspecies: "Chicken",
+  },
+  {
+    id: 4,
+    petspecies: "Duck",
+  },
+];
