@@ -1,18 +1,19 @@
 import React from 'react'
 import { Link } from "react-router-dom"
+import ProgressBar from "../ProgressBar/ProgressBar"
 import "./ProjectCard.css"
 
-function ProjectCard({ projectData, convertDateTime }) {
+function ProjectCard({ projectData, oneProject, convertDateTime }) {
     return (
         <div>
             <Link className="project-card" to="/project">
                 <img src={projectData.image} alt={projectData.title}/>
                 <div>
-                    <h3>{projectData.title}</h3>
-                    <h4>{projectData.shelter}</h4>
-                    <h4>{projectData.species}</h4>
-                    <h4>Goal: {projectData.goal}</h4>
-                    <h4>Date Opened: {convertDateTime = convertDateTime(projectData.date_created)}</h4>
+                    <p>{projectData.title}</p>
+                    <p>{projectData.shelter}</p>
+                    <p>{projectData.species}</p>
+                    <ProgressBar data={oneProject} />
+                    <p>Date Opened: {convertDateTime = convertDateTime(projectData.date_created)}</p>
                 </div>
 
             </Link>

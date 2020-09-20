@@ -1,8 +1,16 @@
 html {
-    margin: 6vw;
+    /* background: linear-gradient(0deg, rgba(209,195,195,1) 30%, rgba(75,70,70,1) 75%, rgba(0,0,0,1) 100%); */
+    background: #efe9e9;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2vw;
 }
 
 a {
     text-decoration: none;
     color: black;
+}
+
+.contents {
+    margin: 6vw;
+    /* background-color: white; */
 }

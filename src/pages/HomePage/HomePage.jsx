@@ -1,5 +1,5 @@
 import React from "react";
-import { allProjects } from "../../data";
+import { allProjects, oneProject } from "../../data";
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
 
 function HomePage({ convertDateTime }) {
@@ -10,6 +10,7 @@ function HomePage({ convertDateTime }) {
           <ProjectCard
             key={key}
             projectData={projectData}
+            oneProject={oneProject}
             convertDateTime={convertDateTime}
           />
         );

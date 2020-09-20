@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import './assests/fonts/Comfortaa-SemiBold.ttf'
+import './assests/fonts/Comfortaa-VariableFont_wght.ttf'
 
 ReactDOM.render(
   <React.StrictMode>

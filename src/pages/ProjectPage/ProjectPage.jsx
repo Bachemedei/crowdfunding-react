@@ -4,25 +4,6 @@ import { oneProject } from "../../data";
 import "./ProjectPage.css";
 
 function ProjectPage({ convertDateTime }) {
-  // Variables & State
-  const pledges = oneProject.pledges;
-
-  // Helpers
-  const amountFunded = (pledges) => {
-    // Iterate through pledges array, add the amount of each pledge to total
-    return pledges.reduce((total, current) => {
-      total = total + current.amount;
-      return total;
-    }, 0);
-  };
-
-  const percentComplete = (oneProject, pledges) => {
-    let pledgeTotal = amountFunded(pledges)
-    return Math.floor(pledgeTotal/oneProject.goal * 100)
-  };
-
-  // Methods
-
   // Template
   return (
     <div className="project-detail">
@@ -33,18 +14,17 @@ function ProjectPage({ convertDateTime }) {
           alt={oneProject.title}
         />
         <div className="project-info">
-          <h2>{oneProject.title}</h2>
-          <h2>{oneProject.shelter}</h2>
-          <h3>{`Status: ${oneProject.is_open}`}</h3>
-          <h3>Funding Goal: ${oneProject.goal}</h3>
-          <ProgressBar percentComplete={percentComplete(oneProject, pledges)}/>
+          <p>{oneProject.title}</p>
+          <p>{oneProject.shelter}</p>
+          <p>{`Status: ${oneProject.is_open}`}</p>
+          <ProgressBar data={oneProject}/>
         </div>
       </div>
       <div>
-        <h3>Date Opened: {convertDateTime(oneProject.date_created)}</h3>
-        <h3>{oneProject.species}</h3>
-        <h3>Description: {oneProject.description}</h3>
-        <h3>Pledges:</h3>
+        <p>Date Opened: {convertDateTime(oneProject.date_created)}</p>
+        <p>{oneProject.species}</p>
+        <p>Description: {oneProject.description}</p>
+        <p>Pledges:</p>
         <ul>
           {oneProject.pledges.map((pledgeData, key) => {
             return (

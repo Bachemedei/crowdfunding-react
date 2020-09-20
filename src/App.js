@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
 import Home from "./pages/HomePage/HomePage";
 import ProjectPage from "./pages/ProjectPage/ProjectPage";
+import LogIn from "./pages/LogIn/LogIn";
+import SignUp from "./pages/SignUp/SignUp";
 import Header from "./components/Header/Header"
 import "./App.css";
 
@@ -30,23 +32,31 @@ function App() {
 
   //Template
   return (
-    <Router>
-    <Route path="/">
-      <Header />
-    </Route>
-      <div>
-        <Nav />
+    <div className="contents">
+      <Router>
+      <Route path="/">
+        <Header />
+      </Route>
+        <div>
+          <Nav />
 
-        <Switch>
-          <Route path="/project">
-            <ProjectPage convertDateTime={convertDateTime} />
-          </Route>
-          <Route path="/">
-            <Home convertDateTime={convertDateTime} />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+          <Switch>
+            <Route path="/project">
+              <ProjectPage convertDateTime={convertDateTime} />
+            </Route>
+            <Route path="/login">
+              <LogIn />
+            </Route>
+            <Route path="/signup">
+              <SignUp />
+            </Route>
+            <Route path="/">
+              <Home convertDateTime={convertDateTime} />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </div>
   )
 }
 
