@@ -1,24 +1,33 @@
-import React from 'react'
-import { Link } from "react-router-dom"
-import ProgressBar from "../ProgressBar/ProgressBar"
-import "./ProjectCard.css"
+import React from "react";
+import { Link } from "react-router-dom";
+import ProgressBar from "../ProgressBar/ProgressBar";
+import ProjectStatus from "../ProjectStatus/ProjectStatus";
+import "./ProjectCard.css";
+// import cat from "../../assests/images/cat.svg"
+import AnimalLogo from "../AnimalLogo/AnimalLogo";
 
 function ProjectCard({ projectData, oneProject, convertDateTime }) {
-    return (
-        <div>
-            <Link className="project-card" to="/project">
-                <img src={projectData.image} alt={projectData.title}/>
-                <div>
-                    <p>{projectData.title}</p>
-                    <p>{projectData.shelter}</p>
-                    <p>{projectData.species}</p>
-                    <ProgressBar data={oneProject} />
-                    <p>Date Opened: {convertDateTime = convertDateTime(projectData.date_created)}</p>
-                </div>
-
-            </Link>
-        </div>
-    )
+  return (
+    <div className="project-card">
+      <img
+        className="project-img"
+        src={projectData.image}
+        alt={projectData.title}
+      />
+      <div>
+        <Link to="/project">
+          <p>{projectData.title}</p>
+        </Link>
+        <p>{projectData.shelter}</p>
+        <AnimalLogo species={projectData.species[0]} />
+        <ProgressBar data={oneProject} />
+        <ProjectStatus
+          opened={projectData.is_open}
+          date={convertDateTime(projectData.date_created)}
+        />
+      </div>
+    </div>
+  );
 }
 
-export default ProjectCard
+export default ProjectCard;

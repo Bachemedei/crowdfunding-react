@@ -1,5 +1,7 @@
 import React from "react";
+import AnimalLogo from "../../components/AnimalLogo/AnimalLogo";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
+import ProjectStatus from "../../components/ProjectStatus/ProjectStatus";
 import TitleText from "../../components/TitleText/TitleText";
 import { oneProject } from "../../data";
 import "./ProjectPage.css";
@@ -8,7 +10,7 @@ function ProjectPage({ convertDateTime }) {
   // Template
   return (
     <div className="project-detail">
-    <TitleText title={oneProject.title} />
+      <TitleText title={oneProject.title} />
       <div className="project-summary">
         <img
           className="project-img"
@@ -17,13 +19,15 @@ function ProjectPage({ convertDateTime }) {
         />
         <div className="project-info">
           <p>{oneProject.shelter}</p>
-          <p>{`Status: ${oneProject.is_open}`}</p>
-          <ProgressBar data={oneProject}/>
+          <AnimalLogo species={oneProject.species[0]} />
+          <ProjectStatus
+            opened={oneProject.is_open}
+            date={convertDateTime(oneProject.date_created)}
+          />
+          <ProgressBar data={oneProject} />
         </div>
       </div>
       <div>
-        <p>Date Opened: {convertDateTime(oneProject.date_created)}</p>
-        <p>{oneProject.species}</p>
         <p>Description: {oneProject.description}</p>
         <p>Pledges:</p>
         <ul>

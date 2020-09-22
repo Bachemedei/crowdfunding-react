@@ -5,12 +5,12 @@ export const allProjects = [
     description: "Project Description for Project One",
     goal: 150,
     image: "https://via.placeholder.com/300.jpg",
-    is_open: false,
+    is_open: true,
     date_created: "2020-03-20T14:28:23.382748Z",
     owner: "bronwyn",
     shelter: "Greyhound Rescue",
     is_approved: true,
-    species: ["Cat"],
+    species: ["Dog"],
   },
   {
     id: 3,
@@ -31,12 +31,12 @@ export const allProjects = [
     description: "Project Description for Project Three",
     goal: 150,
     image: "https://via.placeholder.com/300.jpg",
-    is_open: false,
+    is_open: true,
     date_created: "2020-03-20T14:28:23.382748Z",
     owner: "bronwyn",
     shelter: "Greyhound Rescue",
     is_approved: true,
-    species: ["Cat"],
+    species: ["Chicken"],
   },
   {
     id: 5,
@@ -49,7 +49,7 @@ export const allProjects = [
     owner: "bronwyn",
     shelter: "Greyhound Rescue",
     is_approved: true,
-    species: ["Cat"],
+    species: ["Duck"],
   },
   {
     id: 6,
@@ -62,7 +62,7 @@ export const allProjects = [
     owner: "bronwyn",
     shelter: "Greyhound Rescue",
     is_approved: true,
-    species: ["Dog"],
+    species: ["Mouse"],
   },
 ];
 
@@ -72,12 +72,12 @@ export const oneProject = {
   description: "Project Description for Project One",
   goal: 150,
   image: "https://via.placeholder.com/300.jpg",
-  is_open: false,
+  is_open: true,
   date_created: "2020-03-20T14:28:23.382748Z",
   owner: "bronwyn",
   shelter: "Greyhound Rescue",
   is_approved: true,
-  species: ["Cat"],
+  species: ["Dog"],
   pledges: [
     {
       id: 1,
@@ -106,5 +106,9 @@ export const petCategories = [
   {
     id: 4,
     petspecies: "Duck",
+  },
+  {
+    id: 5,
+    petspecies: "Mouse",
   },
 ];

@@ -1,0 +1,17 @@
+.animal-logo-ctn {
+    display: flex;
+    flex-direction: column;
+    width: 4vw;
+}
+
+.animal-logo {
+    width: 4vw;
+    height: 100%;
+
+}
+
+.animal-label {
+    font-size: 0.6em;
+    margin-top: 0;
+    text-align: center;
+}
