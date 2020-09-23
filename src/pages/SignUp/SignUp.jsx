@@ -4,6 +4,7 @@ import Button from "../../components/Button/Button";
 import "./SignUp.css";
 import TitleText from "../../components/TitleText/TitleText";
 import SelectInput from "../../components/SelectInput/SelectInput";
+import SelectAnimals from "../../components/SelectAnimals/SelectAnimals";
 
 function SignUp() {
   return (
@@ -11,7 +12,7 @@ function SignUp() {
       <TitleText title="Sign Up" />
       <TextInput type="text" label="Given Name" />
       <TextInput type="email" label="Email Address" />
-      <SelectInput label="Select Your Favourite Pet" />
+      <SelectAnimals />
       <TextInput type="password" label="Password" />
       <Button value="Sign Up" />
     </div>

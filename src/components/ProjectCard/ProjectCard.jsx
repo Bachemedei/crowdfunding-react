@@ -15,12 +15,12 @@ function ProjectCard({ projectData, oneProject, convertDateTime }) {
         alt={projectData.title}
       />
       <div>
-        <Link to="/project">
+        <Link to={`/project/${projectData.id}`}>
           <p>{projectData.title}</p>
         </Link>
         <p>{projectData.shelter}</p>
         <AnimalLogo species={projectData.species[0]} />
-        <ProgressBar data={oneProject} />
+        {/* <ProgressBar data={oneProject} /> */}
         <ProjectStatus
           opened={projectData.is_open}
           date={convertDateTime(projectData.date_created)}

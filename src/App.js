@@ -41,7 +41,7 @@ function App() {
         <Nav />
         <div className="contents">
           <Switch>
-            <Route path="/project">
+            <Route path="/project/:id">
               <ProjectPage convertDateTime={convertDateTime} />
             </Route>
             <Route path="/login">

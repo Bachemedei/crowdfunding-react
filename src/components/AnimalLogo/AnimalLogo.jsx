@@ -4,6 +4,7 @@ import { animalLogos } from "../../images";
 
 function AnimalLogo({ species }) {
   const src = animalLogos[species];
+  console.log(src, "burrito")
   return (
     <div className="animal-logo-ctn">
       <img className="animal-logo" src={src} alt={species} />

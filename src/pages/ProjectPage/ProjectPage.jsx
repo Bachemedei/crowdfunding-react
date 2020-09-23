@@ -1,39 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import AnimalLogo from "../../components/AnimalLogo/AnimalLogo";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import ProjectStatus from "../../components/ProjectStatus/ProjectStatus";
 import TitleText from "../../components/TitleText/TitleText";
-import { oneProject } from "../../data";
 import "./ProjectPage.css";
 
 function ProjectPage({ convertDateTime }) {
+  const [projectData, setProjectData] = useState({ pledges: [] });
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}projects/${id}/`)
+      .then((results) => {
+        return results.json();
+      })
+      .then((data) => {
+        setProjectData(data);
+      });
+  }, [id]);
+
   // Template
   return (
-    <div className="project-detail">
-      <TitleText title={oneProject.title} />
+    <div className="project-detail" key={projectData.id}>
+      <TitleText title={projectData.title} />
       <div className="project-summary">
         <img
           className="project-img"
-          src={oneProject.image}
-          alt={oneProject.title}
+          src={projectData.image}
+          alt={projectData.title}
         />
         <div className="project-info">
-          <p>{oneProject.shelter}</p>
-          <AnimalLogo species={oneProject.species[0]} />
+          <p>{projectData.shelter}</p>
+          <AnimalLogo species={projectData.species} />
           <ProjectStatus
-            opened={oneProject.is_open}
-            date={convertDateTime(oneProject.date_created)}
+            opened={projectData.is_open}
+            date={convertDateTime(projectData.date_created)}
           />
-          <ProgressBar data={oneProject} />
+          <ProgressBar data={projectData} />
         </div>
       </div>
       <div>
-        <p>Description: {oneProject.description}</p>
+        <p>Description: {projectData.description}</p>
         <p>Pledges:</p>
         <ul>
-          {oneProject.pledges.map((pledgeData, key) => {
+          {projectData.pledges.map((pledgeData, key) => {
             return (
-              <li>
+              <li key={key}>
                 ${pledgeData.amount} from {pledgeData.supporter}
               </li>
             );
