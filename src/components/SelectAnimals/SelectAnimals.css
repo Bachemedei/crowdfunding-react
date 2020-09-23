@@ -1,10 +1,4 @@
-.animals {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 90%;
-    padding-top: 1vw;
-}
+
 
 .animal {
     width: 4vw;
@@ -15,4 +9,13 @@
     font-size: 0.6em;
     margin-top: 0;
     text-align: center;
+}
+
+.invisible-btn {
+    background: transparent;
+    border: none !important;
+}
+
+.invisible-btn:focus {
+    outline: none;
 }

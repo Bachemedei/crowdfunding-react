@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./AnimalLogo.css";
 import { animalLogos } from "../../images";
 
-function AnimalLogo({ species }) {
+function AnimalLogo({ species, selected }) {
   const src = animalLogos[species];
-  console.log(src, "burrito")
+
   return (
     <div className="animal-logo-ctn">
-      <img className="animal-logo" src={src} alt={species} />
+      <img src={src} alt={species} className={`animal-logo${selected ? " selected" : ""}`} />
       <p className="animal-label">{species}</p>
     </div>
   );

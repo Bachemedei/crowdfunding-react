@@ -9,6 +9,9 @@
     height: 100%;
 
 }
+.selected {
+    filter: invert(7%) sepia(100%) saturate(7351%) hue-rotate(248deg) brightness(114%) contrast(141%);
+}
 
 .animal-label {
     font-size: 0.6em;
