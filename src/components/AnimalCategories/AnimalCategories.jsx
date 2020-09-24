@@ -3,7 +3,7 @@ import AnimalSelect from "../AnimalSelect/AnimalSelect";
 import "./AnimalCategories.css";
 import { animalLogos } from "../../images";
 
-function AnimalCategories({ label}) {
+function AnimalCategories({ label }) {
   const [selectedAnimals, setSelectedAnimals] = useState([]);
   const animals = Object.keys(animalLogos);
 
@@ -20,10 +20,14 @@ function AnimalCategories({ label}) {
 
   return (
     <div className="animal-categories">
-    <p>{label}:</p>
+      <p>{label}:</p>
       <div className="animals">
         {animals.map((animal, index) => (
-          <AnimalSelect animal={animal} onAnimalClick={onAnimalClick} />
+          <AnimalSelect
+            key={index}
+            animal={animal}
+            onAnimalClick={onAnimalClick}
+          />
         ))}
       </div>
     </div>

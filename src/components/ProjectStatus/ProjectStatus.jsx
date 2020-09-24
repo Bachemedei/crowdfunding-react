@@ -1,4 +1,5 @@
 import React from 'react'
+import "./ProjectStatus.css"
 
 function ProjectStatus({ opened, date }) {
     const projectStatus = () => {
@@ -8,7 +9,7 @@ function ProjectStatus({ opened, date }) {
         return "Project Closed"
       }
     return (
-        <p>{projectStatus()}</p>
+        <p className="project-status">{projectStatus()}</p>
     )
 }
 

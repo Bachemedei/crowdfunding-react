@@ -23,7 +23,7 @@ function ProgressBar({ data }) {
     };
 
   return (
-    <div>
+    <div className="progress-ctn">
       <div className="progress-bar">
         <div className="progress-complete" style={progressStyle}></div>
       </div>

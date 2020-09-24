@@ -18,3 +18,7 @@
     object-fit: cover;
     padding: 3vw;
 }
+.project-animals {
+    display: flex;
+    align-items: center;
+}

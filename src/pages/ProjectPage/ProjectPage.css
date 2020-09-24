@@ -11,3 +11,12 @@
 .project-img {
     margin-right: 2vw;
 }
+
+.project-animals {
+    display: flex;
+    align-items: center;
+}
+
+.project-body {
+    padding: 1vw;
+}
