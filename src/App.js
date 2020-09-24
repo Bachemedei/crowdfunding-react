@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import Header from "./components/Header/Header";
 import "./App.css";
 import RegisterShelter from "./pages/RegisterShelter/RegisterShelter";
+import UserProfile from "./pages/UserProfile/UserProfile";
 
 function App() {
   // Variables
@@ -52,6 +53,9 @@ function App() {
             </Route>
             <Route path="/register-shelter">
               <RegisterShelter />
+            </Route>
+            <Route path="/profile">
+              <UserProfile />
             </Route>
             <Route path="/">
               <Home convertDateTime={convertDateTime} />

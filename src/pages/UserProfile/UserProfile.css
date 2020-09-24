@@ -1,0 +1,17 @@
+.profile-top {
+    display:flex;
+}
+
+.profile-pic {
+    width: 35vw;
+    height: 100%;
+}
+
+.pet-likes {
+    display: flex;
+    align-items: center;
+}
+
+.profile {
+    margin: 2vw;
+}
