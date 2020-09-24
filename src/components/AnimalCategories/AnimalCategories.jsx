@@ -1,29 +1,33 @@
-import React, { useState } from 'react'
-import SelectAnimals from '../SelectAnimals/SelectAnimals';
-import "./AnimalCategories.css"
+import React, { useState } from "react";
+import AnimalSelect from "../AnimalSelect/AnimalSelect";
+import "./AnimalCategories.css";
 import { animalLogos } from "../../images";
 
-function AnimalCategories() {
-    const [selectedAnimals, setSelectedAnimals] = useState([])
-    const animals = Object.keys(animalLogos);
+function AnimalCategories({ label}) {
+  const [selectedAnimals, setSelectedAnimals] = useState([]);
+  const animals = Object.keys(animalLogos);
 
-    const onAnimalClick = (animal, selected) => {
-        if(selected){
-            setSelectedAnimals([...selectedAnimals, animal])
-        }
-        if(!selected){
-            setSelectedAnimals(selectedAnimals.filter(critter => critter !== animal))
-        }
-        
+  const onAnimalClick = (animal, selected) => {
+    if (selected) {
+      setSelectedAnimals([...selectedAnimals, animal]);
     }
+    if (!selected) {
+      setSelectedAnimals(
+        selectedAnimals.filter((critter) => critter !== animal)
+      );
+    }
+  };
 
-    return (
-        <div className="animals">
-            {animals.map((animal, index) => (
-                <SelectAnimals animal={animal} onAnimalClick={onAnimalClick} />
-                ))}
-        </div>
-    )
+  return (
+    <div className="animal-categories">
+    <p>{label}:</p>
+      <div className="animals">
+        {animals.map((animal, index) => (
+          <AnimalSelect animal={animal} onAnimalClick={onAnimalClick} />
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default AnimalCategories
+export default AnimalCategories;

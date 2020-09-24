@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import "./SelectAnimals.css";
+import React, { useState } from "react";
+import "./AnimalSelect.css";
 import AnimalLogo from "../AnimalLogo/AnimalLogo";
 
-function SelectAnimals({ animal, onAnimalClick }) {
+function AnimalSelect({ animal, onAnimalClick }) {
   const [animalSelected, setAnimalSelected] = useState({ selected: false });
 
   const handleClick = () => {
@@ -19,4 +19,4 @@ function SelectAnimals({ animal, onAnimalClick }) {
   );
 }
 
-export default SelectAnimals;
+export default AnimalSelect;
