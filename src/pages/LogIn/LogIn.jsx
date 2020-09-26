@@ -1,19 +1,75 @@
-import React from 'react'
-import "./LogIn.css"
-import TextInput from '../../components/TextInput/TextInput'
-import Button from '../../components/Button/Button'
-import TitleText from '../../components/TitleText/TitleText'
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import "./LogIn.css";
+import TextInput from "../../components/TextInput/TextInput";
+import Button from "../../components/Button/Button";
+import TitleText from "../../components/TitleText/TitleText";
 
 function LogIn() {
-    
-    return (
-        <div className="login-form">
-            <TitleText title="Log In" />
-            <TextInput type="email" label="Email" placeholder="email@email.com"/>
-            <TextInput type="password" label="Password" placeholder="password"/>
-            <Button value="Log in" />
-        </div>
-    )
+  // Variables
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: "",
+  });
+
+  const history = useHistory();
+
+  // Methods
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setCredentials((prevCredentials) => ({
+      ...prevCredentials,
+      [id]: value,
+    }));
+  };
+
+  const postData = async () => {
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}api-token-auth/`,
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(credentials),
+      }
+    );
+    return response.json();
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (credentials.username && credentials.password) {
+      postData().then((response) => {
+        window.localStorage.setItem("token", response.token);
+        if (response.token != null) {
+          history.push("/");
+        }
+      });
+    }
+  };
+
+  // Template
+  return (
+    <div className="login-form">
+      <TitleText title="Log In" />
+      <TextInput
+        id="username"
+        type="email"
+        label="Email"
+        placeholder="email@email.com"
+        onChange={handleChange}
+      />
+      <TextInput
+        id="password"
+        type="password"
+        label="Password"
+        placeholder="password"
+        onChange={handleChange}
+      />
+      <Button value="Log in" onClick={handleSubmit} />
+    </div>
+  );
 }
 
-export default LogIn
+export default LogIn;

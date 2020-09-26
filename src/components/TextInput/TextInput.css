@@ -7,7 +7,7 @@
 }
 
 .form-input {
-    width: 50%;
+    width: 70%;
     padding: 0.5vw;
     margin-top: 0.5vw;
     /* border-radius:0.5em; */
@@ -20,5 +20,11 @@
 .form-input:focus {
     outline-style: none;
     border-bottom: 0.1em solid black;
-    
+}
+
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover, 
+.form-input:-webkit-autofill:focus, 
+.form-input:-webkit-autofill:selected {
+    background-color: #f9f9f9;
 }

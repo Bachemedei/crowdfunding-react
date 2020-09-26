@@ -9,6 +9,7 @@ import Header from "./components/Header/Header";
 import "./App.css";
 import RegisterShelter from "./pages/RegisterShelter/RegisterShelter";
 import UserProfile from "./pages/UserProfile/UserProfile";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 function App() {
   // Variables
@@ -51,9 +52,9 @@ function App() {
             <Route path="/signup">
               <SignUp />
             </Route>
-            <Route path="/register-shelter">
+            <PrivateRoute path="/register-shelter">
               <RegisterShelter />
-            </Route>
+            </PrivateRoute>
             <Route path="/profile">
               <UserProfile />
             </Route>

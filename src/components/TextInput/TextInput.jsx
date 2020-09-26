@@ -1,7 +1,7 @@
 import React from "react";
 import "./TextInput.css";
 
-function TextInput({ label, type, placeholder }) {
+function TextInput({ label, type, placeholder, ...props }) {
   return (
     <form>
       <label className="form-item">
@@ -11,6 +11,7 @@ function TextInput({ label, type, placeholder }) {
           type={type}
           name={label}
           placeholder={placeholder}
+          {...props}
         />
       </label>
     </form>
