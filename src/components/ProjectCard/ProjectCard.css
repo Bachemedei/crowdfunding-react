@@ -6,6 +6,15 @@
     display: flex;
     justify-content: flex-start;
     align-items:center;
+    box-shadow: 1px 1px, 1px 1px black;
+}
+
+.lhs-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3vw;
+    justify-content: space-evenly;
 }
 
 .project-card-text {
@@ -16,7 +25,9 @@
     width: 20vw;
     height: 100%;
     object-fit: cover;
-    padding: 3vw;
+    margin: 0;
+    margin-bottom: 1vw;
+    
 }
 .project-animals {
     display: flex;

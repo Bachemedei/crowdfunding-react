@@ -8,10 +8,6 @@
     justify-content: flex-start;
 }
 
-.project-img {
-    margin-right: 2vw;
-}
-
 .project-animals {
     display: flex;
     align-items: center;
