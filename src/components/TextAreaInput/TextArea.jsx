@@ -1,7 +1,7 @@
 import React from "react";
 import "./TextArea.css";
 
-function TextArea({ label, placeholder }) {
+function TextArea({ label, placeholder, type, ...props }) {
   return (
     <form>
       <label className="form-item">
@@ -9,7 +9,10 @@ function TextArea({ label, placeholder }) {
         <textarea
           className="form-input  text-area"
           placeholder={placeholder}
-        ></textarea>
+          type={type}
+          name={label}
+          {...props}
+        />
       </label>
     </form>
   );

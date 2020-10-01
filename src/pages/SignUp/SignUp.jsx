@@ -5,11 +5,10 @@ import Button from "../../components/Button/Button";
 import TitleText from "../../components/TitleText/TitleText";
 import AnimalCategories from "../../components/AnimalCategories/AnimalCategories";
 import "./SignUp.css";
-// import TextArea from "../../components/TextAreaInput/TextArea";
+import TextArea from "../../components/TextAreaInput/TextArea";
 
 function SignUp() {
   // Variables
-  const [selectedAnimals, setSelectedAnimals] = useState([]);
   const [userDetails, setUserDetails] = useState({
     preferredname: "",
     email: "",
@@ -21,6 +20,8 @@ function SignUp() {
   const history = useHistory();
 
   // Methods
+
+  // This will trigger when any form field changes and will set the state
   const handleChange = (e) => {
     const { id, value } = e.target;
     setUserDetails((prevUserDetails) => ({
@@ -29,14 +30,19 @@ function SignUp() {
     }));
   };
 
+  // This triggers when an animal logo is clicked and adds or removes that animal to the petlike value of state
   const onAnimalClick = (animal, selected) => {
     if (selected) {
-      setSelectedAnimals([...selectedAnimals, animal]);
+      setUserDetails((userDetails) => ({
+        ...userDetails,
+        petlikes: [...userDetails.petlikes, animal],
+      }));
     }
     if (!selected) {
-      setSelectedAnimals(
-        selectedAnimals.filter((critter) => critter !== animal)
-      );
+      setUserDetails((userDetails) => ({
+        ...userDetails,
+        petlikes: userDetails.petlikes.filter((critter) => critter !== animal),
+      }));
     }
   };
 
@@ -58,6 +64,7 @@ function SignUp() {
     if (
       userDetails.preferredname &&
       userDetails.email &&
+      userDetails.petlikes &&
       userDetails.bio &&
       userDetails.profile_pic &&
       userDetails.password
@@ -97,8 +104,9 @@ function SignUp() {
         onChange={handleChange}
         onAnimalClick={onAnimalClick}
       />
-      <TextInput
+      <TextArea
         id="bio"
+        type="text"
         label="Biography"
         placeholder="Tell us something about you..."
         onChange={handleChange}

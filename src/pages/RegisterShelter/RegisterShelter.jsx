@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import AnimalCategories from "../../components/AnimalCategories/AnimalCategories";
 import Button from "../../components/Button/Button";
-// import TextArea from "../../components/TextAreaInput/TextArea";
+import TextArea from "../../components/TextAreaInput/TextArea";
 import TextInput from "../../components/TextInput/TextInput";
 import TitleText from "../../components/TitleText/TitleText";
 import "./RegisterShelter.css";
@@ -13,9 +13,11 @@ function RegisterShelter() {
     name: "",
     address: "",
     description: "",
+    species: [],
     charityregister: "",
   });
   const history = useHistory();
+  const token = window.localStorage.getItem("token");
 
   // Methods
   const handleChange = (e) => {
@@ -26,11 +28,28 @@ function RegisterShelter() {
     }));
   };
 
+  // This triggers when an animal logo is clicked and adds or removes that animal to the petlike value of state
+  const onAnimalClick = (animal, selected) => {
+    if (selected) {
+      setShelterDetails((shelterDetails) => ({
+        ...shelterDetails,
+        species: [...shelterDetails.species, animal],
+      }));
+    }
+    if (!selected) {
+      setShelterDetails((shelterDetails) => ({
+        ...shelterDetails,
+        species: shelterDetails.species.filter((critter) => critter !== animal),
+      }));
+    }
+  };
+
   const postData = async () => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}shelters/`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
       },
       body: JSON.stringify(shelterDetails),
     });
@@ -38,7 +57,6 @@ function RegisterShelter() {
   };
 
   const handleSubmit = (e) => {
-    console.log(shelterDetails);
     e.preventDefault();
     if (
       shelterDetails.name &&
@@ -80,9 +98,13 @@ function RegisterShelter() {
         label="Australian Charity Register Number"
         onChange={handleChange}
       />
-      <AnimalCategories label="Select Animals You Rescue" />
-      <TextInput
+      <AnimalCategories
+        label="Select Animals You Rescue"
+        onAnimalClick={onAnimalClick}
+      />
+      <TextArea
         id="description"
+        type="text"
         label="Shelter Bio"
         onChange={handleChange}
         onKeyPress={handleKeyPress}
