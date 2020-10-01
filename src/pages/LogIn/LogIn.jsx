@@ -49,6 +49,13 @@ function LogIn() {
     }
   };
 
+  const handleKeyPress = (e) => {
+    // triggers if enter key is pressed
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
+  };
+
   // Template
   return (
     <div className="login-form">
@@ -66,6 +73,7 @@ function LogIn() {
         label="Password"
         placeholder="password"
         onChange={handleChange}
+        onKeyPress={handleKeyPress}
       />
       <Button value="Log in" onClick={handleSubmit} />
     </div>

@@ -6,10 +6,11 @@ import ProjectPage from "./pages/ProjectPage/ProjectPage";
 import LogIn from "./pages/LogIn/LogIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Header from "./components/Header/Header";
-import "./App.css";
 import RegisterShelter from "./pages/RegisterShelter/RegisterShelter";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+// import FullPageLoader from "./components/FullPageLoader/FullPageLoader";
+import "./App.css";
 
 function App() {
   // Variables

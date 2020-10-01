@@ -1,22 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import AnimalSelect from "../AnimalSelect/AnimalSelect";
 import "./AnimalCategories.css";
 import { animalLogos } from "../../images";
 
-function AnimalCategories({ label }) {
-  const [selectedAnimals, setSelectedAnimals] = useState([]);
+function AnimalCategories({ label, onAnimalClick }) {
   const animals = Object.keys(animalLogos);
-
-  const onAnimalClick = (animal, selected) => {
-    if (selected) {
-      setSelectedAnimals([...selectedAnimals, animal]);
-    }
-    if (!selected) {
-      setSelectedAnimals(
-        selectedAnimals.filter((critter) => critter !== animal)
-      );
-    }
-  };
 
   return (
     <div className="animal-categories">
