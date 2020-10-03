@@ -1,36 +1,57 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import AnimalLogo from "../../components/AnimalLogo/AnimalLogo";
-import PledgesCard from "../../components/PledgesCard/PledgesCard";
-import ProgressBar from "../../components/ProgressBar/ProgressBar";
-import ProjectStatus from "../../components/ProjectStatus/ProjectStatus";
-import TitleText from "../../components/TitleText/TitleText";
-import useFullPageLoader from "../../hooks/useFullPageLoader";
-import "./ProjectPage.css";
+import React, { useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
+import AnimalLogo from "../../components/AnimalLogo/AnimalLogo"
+import EditDetails from "../../components/EditDetails/EditDetails"
+import PledgesCard from "../../components/PledgesCard/PledgesCard"
+import ProgressBar from "../../components/ProgressBar/ProgressBar"
+import ProjectStatus from "../../components/ProjectStatus/ProjectStatus"
+import TitleText from "../../components/TitleText/TitleText"
+import FullPageLoader from "../../components/FullPageLoader/FullPageLoader"
+import "./ProjectPage.css"
+import DeleteContent from "../../components/DeleteContent/DeleteContent"
+import EditProject from "../../components/EditProject/EditProject"
 
 function ProjectPage({ convertDateTime }) {
-  const [projectData, setProjectData] = useState({ pledges: [] });
-  const { id } = useParams();
-
-  const [loader, showLoader, hideLoader] = useFullPageLoader();
+  const [projectData, setProjectData] = useState({ pledges: [] })
+  const [editProject, setEditProject] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const { id } = useParams()
 
   useEffect(() => {
-    showLoader();
     fetch(`${process.env.REACT_APP_API_URL}projects/${id}/`)
       .then((results) => {
-        return results.json();
+        return results.json()
       })
       .then((data) => {
-        setProjectData(data);
-        hideLoader();
-      });
-  }, [id]);
+        setProjectData(data)
+        setLoading(false)
+      })
+  }, [id])
+
+  const handleClick = () => {
+    setEditProject(!editProject)
+  }
+
+  if (loading) {
+    return <FullPageLoader />
+  }
+
+  if (editProject) {
+    return <EditProject projectData={projectData} />
+  }
 
   // Template
   if (projectData.species !== undefined) {
     return (
       <div className="project-detail" key={projectData.id}>
         <TitleText title={projectData.title} />
+        <div className="owner-options">
+          <EditDetails
+            contentOwner={projectData.owner_id}
+            onClick={handleClick}
+          />
+          <DeleteContent contentOwner={projectData.owner_id} />
+        </div>
         <div className="project-summary">
           <div className="img-and-icon">
             <img
@@ -40,7 +61,7 @@ function ProjectPage({ convertDateTime }) {
             />
             <div className="project-animals">
               {projectData.species.map((species, index) => {
-                return <AnimalLogo species={species} key={index} />;
+                return <AnimalLogo species={species} key={index} />
               })}
             </div>
           </div>
@@ -58,9 +79,9 @@ function ProjectPage({ convertDateTime }) {
           <PledgesCard projectData={projectData} />
         </div>
       </div>
-    );
+    )
   }
-  return <>{loader}</>;
+  return null
 }
 
-export default ProjectPage;
+export default ProjectPage

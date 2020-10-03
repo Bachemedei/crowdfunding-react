@@ -1,7 +1,7 @@
-import React from "react";
-import "./TextInput.css";
+import React from "react"
+import "./TextInput.css"
 
-function TextInput({ label, type, placeholder, ...props }) {
+function TextInput({ label, type, placeholder, value, ...props }) {
   return (
     <form>
       <label className="form-item">
@@ -11,11 +11,12 @@ function TextInput({ label, type, placeholder, ...props }) {
           type={type}
           name={label}
           placeholder={placeholder}
+          defaultValue={value}
           {...props}
         />
       </label>
     </form>
-  );
+  )
 }
 
-export default TextInput;
+export default TextInput

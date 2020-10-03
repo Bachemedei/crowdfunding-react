@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import TextInput from "../../components/TextInput/TextInput";
-import Button from "../../components/Button/Button";
-import TitleText from "../../components/TitleText/TitleText";
-import AnimalCategories from "../../components/AnimalCategories/AnimalCategories";
-import "./SignUp.css";
-import TextArea from "../../components/TextAreaInput/TextArea";
+import React, { useState } from "react"
+import { useHistory } from "react-router-dom"
+import AnimalCategories from "../../components/AnimalCategories/AnimalCategories"
+import Button from "../../components/Button/Button"
+import TextArea from "../../components/TextAreaInput/TextArea"
+import TextInput from "../../components/TextInput/TextInput"
+import TitleText from "../../components/TitleText/TitleText"
+import "./SignUp.css"
 
 function SignUp() {
   // Variables
@@ -16,19 +16,19 @@ function SignUp() {
     bio: "",
     profile_pic: "",
     password: "",
-  });
-  const history = useHistory();
+  })
+  const history = useHistory()
 
   // Methods
 
   // This will trigger when any form field changes and will set the state
   const handleChange = (e) => {
-    const { id, value } = e.target;
+    const { id, value } = e.target
     setUserDetails((prevUserDetails) => ({
       ...prevUserDetails,
       [id]: value,
-    }));
-  };
+    }))
+  }
 
   // This triggers when an animal logo is clicked and adds or removes that animal to the petlike value of state
   const onAnimalClick = (animal, selected) => {
@@ -36,31 +36,31 @@ function SignUp() {
       setUserDetails((userDetails) => ({
         ...userDetails,
         petlikes: [...userDetails.petlikes, animal],
-      }));
+      }))
     }
     if (!selected) {
       setUserDetails((userDetails) => ({
         ...userDetails,
         petlikes: userDetails.petlikes.filter((critter) => critter !== animal),
-      }));
+      }))
     }
-  };
+  }
 
   const postData = async () => {
-    console.log("post data function");
+    console.log("post data function")
     const response = await fetch(`${process.env.REACT_APP_API_URL}users/`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(userDetails),
-    });
-    return response.json();
-  };
+    })
+    return response.json()
+  }
 
   const handleSubmit = (e) => {
-    console.log(userDetails);
-    e.preventDefault();
+    console.log(userDetails)
+    e.preventDefault()
     if (
       userDetails.preferredname &&
       userDetails.email &&
@@ -70,18 +70,18 @@ function SignUp() {
       userDetails.password
     ) {
       postData().then((response) => {
-        console.log(response);
-        history.push("/login");
-      });
+        console.log(response)
+        history.push("/login")
+      })
     }
-  };
+  }
 
   const handleKeyPress = (e) => {
     // triggers if enter key is pressed
     if (e.key === "Enter") {
-      handleSubmit(e);
+      handleSubmit(e)
     }
-  };
+  }
 
   return (
     <div className="signup-form">
@@ -126,7 +126,7 @@ function SignUp() {
       />
       <Button value="Sign Up" onClick={handleSubmit} type="submit" />
     </div>
-  );
+  )
 }
 
-export default SignUp;
+export default SignUp

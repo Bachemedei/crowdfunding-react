@@ -1,12 +1,12 @@
-import React from "react";
-import "./Button.css";
+import React from "react"
+import "./Button.css"
 
-function Button({ value, ...props }) {
+function Button({ value, url, ...props }) {
   return (
-    <form className="btn-container">
+    <form className="btn-container" action={url}>
       <input className="btn" value={value} {...props} />
     </form>
-  );
+  )
 }
 
-export default Button;
+export default Button

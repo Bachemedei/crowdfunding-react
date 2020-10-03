@@ -1,10 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import ProgressBar from "../ProgressBar/ProgressBar";
-import ProjectStatus from "../ProjectStatus/ProjectStatus";
-import "./ProjectCard.css";
-// import cat from "../../assests/images/cat.svg"
-import AnimalLogo from "../AnimalLogo/AnimalLogo";
+import React from "react"
+import { Link } from "react-router-dom"
+import AnimalLogo from "../AnimalLogo/AnimalLogo"
+import ProgressBar from "../ProgressBar/ProgressBar"
+import ProjectStatus from "../ProjectStatus/ProjectStatus"
+import "./ProjectCard.css"
 
 function ProjectCard({ projectData, convertDateTime }) {
   return (
@@ -17,7 +16,7 @@ function ProjectCard({ projectData, convertDateTime }) {
         />
         <div className="project-animals">
           {projectData.species.map((species, index) => {
-            return <AnimalLogo species={species} key={index} />;
+            return <AnimalLogo species={species} key={index} />
           })}
         </div>
       </div>
@@ -33,7 +32,7 @@ function ProjectCard({ projectData, convertDateTime }) {
         <ProgressBar data={projectData} />
       </div>
     </div>
-  );
+  )
 }
 
-export default ProjectCard;
+export default ProjectCard

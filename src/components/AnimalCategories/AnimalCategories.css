@@ -1,12 +1,10 @@
 .animal-categories {
-    text-align: center;
+  text-align: center;
 }
 
 .animals {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
 }
-

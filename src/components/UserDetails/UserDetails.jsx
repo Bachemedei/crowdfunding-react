@@ -1,8 +1,9 @@
-import React from "react";
-import AnimalLogo from "../../components/AnimalLogo/AnimalLogo";
-import "./UserDetails.css";
+import React from "react"
+import AnimalLogo from "../../components/AnimalLogo/AnimalLogo"
+import EditDetails from "../../components/EditDetails/EditDetails"
+import "./UserDetails.css"
 
-function UserDetails({ userProfile }) {
+function UserDetails({ userProfile, ...props }) {
   if (userProfile.petlikes !== undefined) {
     return (
       <div className="profile-details">
@@ -22,9 +23,12 @@ function UserDetails({ userProfile }) {
           </div>
         </div>
         <div className="profile-right">
-          <div className="profile-name">
-            <h3>Name: </h3>
-            <p>{userProfile.preferredname}</p>
+          <div className="name-and-button">
+            <div className="profile-name">
+              <h3>Name: </h3>
+              <p>{userProfile.preferredname}</p>
+            </div>
+            <EditDetails contentOwner={userProfile.id} {...props} />
           </div>
           <div className="profile-email">
             <h3>Email Address: </h3>
@@ -37,8 +41,8 @@ function UserDetails({ userProfile }) {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default UserDetails;
+export default UserDetails

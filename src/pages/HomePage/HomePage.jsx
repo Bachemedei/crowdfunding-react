@@ -1,33 +1,30 @@
-import React, { useState, useEffect } from "react";
-import ProjectCard from "../../components/ProjectCard/ProjectCard";
-import TitleText from "../../components/TitleText/TitleText";
-import useFullPageLoader from "../../hooks/useFullPageLoader";
-import "./HomePage.css";
+import React, { useState, useEffect } from "react"
+import ProjectCard from "../../components/ProjectCard/ProjectCard"
+import TitleText from "../../components/TitleText/TitleText"
+import FullPageLoader from "../../components/FullPageLoader/FullPageLoader"
+import "./HomePage.css"
 
 function HomePage({ convertDateTime }) {
-  const [projectList, setProjectList] = useState([]);
-  const [loader, showLoader, hideLoader] = useFullPageLoader();
-  const userID = window.localStorage.getItem("userID");
-
-  const filterProjects = () => {
-    let url = "projects/";
-    if (userID != null) url = `${userID}/recommended/`;
-    console.log(url);
-    return url;
-  };
+  const [projectList, setProjectList] = useState([])
+  const [loading, setLoading] = useState(true)
+  const userID = window.localStorage.getItem("userID")
 
   useEffect(() => {
-    showLoader();
-    fetch(`${process.env.REACT_APP_API_URL}${filterProjects()}`)
+    let url = "projects/"
+    if (userID != null) url = `${userID}/recommended/`
+    fetch(`${process.env.REACT_APP_API_URL}${url}`)
       .then((results) => {
-        return results.json();
+        return results.json()
       })
       .then((data) => {
-        setProjectList(data);
-        hideLoader();
-      });
-  }, []);
+        setProjectList(data)
+        setLoading(false)
+      })
+  }, [userID])
 
+  if (loading) {
+    return <FullPageLoader />
+  }
   return (
     <div className="project-cards">
       <TitleText
@@ -40,11 +37,10 @@ function HomePage({ convertDateTime }) {
             projectData={projectData}
             convertDateTime={convertDateTime}
           />
-        );
+        )
       })}
-      {loader}
     </div>
-  );
+  )
 }
 
-export default HomePage;
+export default HomePage

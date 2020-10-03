@@ -1,3 +1,12 @@
+.owner-options {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.owner-options input {
+  width: 10vw;
+}
+
 .project-detail {
   margin: 3vw;
 }

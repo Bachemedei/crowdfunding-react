@@ -1,7 +1,7 @@
-import React from "react";
-import "./TextArea.css";
+import React from "react"
+import "./TextArea.css"
 
-function TextArea({ label, placeholder, type, ...props }) {
+function TextArea({ label, placeholder, type, value, ...props }) {
   return (
     <form>
       <label className="form-item">
@@ -11,11 +11,12 @@ function TextArea({ label, placeholder, type, ...props }) {
           placeholder={placeholder}
           type={type}
           name={label}
+          defaultValue={value}
           {...props}
         />
       </label>
     </form>
-  );
+  )
 }
 
-export default TextArea;
+export default TextArea
