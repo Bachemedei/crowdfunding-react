@@ -1,65 +1,64 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "./UserProfile.css";
 import TitleText from "../../components/TitleText/TitleText";
-import useFullPageLoader from "../../hooks/useFullPageLoader";
-import AnimalLogo from "../../components/AnimalLogo/AnimalLogo";
+import ProjectCard from "../../components/ProjectCard/ProjectCard";
+import FullPageLoader from "../../components/FullPageLoader/FullPageLoader";
+import UserDetails from "../../components/UserDetails/UserDetails";
+import "./UserProfile.css";
 
-function UserProfile() {
+function UserProfile({ convertDateTime }) {
   const [userProfile, setUserProfile] = useState({});
-  const [loader, showLoader, hideLoader] = useFullPageLoader();
+  const [loading, setLoading] = useState(true);
+  const [projectList, setProjectList] = useState([]);
   const { id } = useParams();
+  const userID = window.localStorage.getItem("userID");
 
+  // Get user details
   useEffect(() => {
-    showLoader();
-    fetch(`${process.env.REACT_APP_API_URL}users/1/`)
+    fetch(`${process.env.REACT_APP_API_URL}users/${userID}/`)
       .then((results) => {
         return results.json();
       })
       .then((data) => {
         setUserProfile(data);
-        hideLoader();
+        setLoading(false);
       });
-  }, [id]);
-  //   console.log(userProfile)
+  }, [id, userID]);
 
-  if (userProfile.petlikes !== undefined) {
-    return (
-      <div>
-        <TitleText title="Profile" />
-        <div className="profile-top">
-          <img
-            className="profile-pic"
-            src={userProfile.profile_pic}
-            alt="profile-pic"
-          />
-          <div className="profile-ctn">
-            <div className="profile name">
-              <h3>Name: </h3>
-              <p>{userProfile.preferredname}</p>
-            </div>
-            <div className="profile email">
-              <h3>Email Address: </h3>
-              <p>{userProfile.email}</p>
-            </div>
-            <div className="profile pets">
-          <h3>Favourite Pets: </h3>
-          <div className="pet-likes">
-            {userProfile.petlikes.map((animal, index) => (
-              <AnimalLogo species={animal} key={index} />
-            ))}
-          </div>
-        </div>
-          </div>
-        </div>
-        <div className="profile bio">
-          <h3>Biography: </h3>
-          <p>{userProfile.bio}</p>
-        </div>
-      </div>
-    );
+  // Get users supported projects
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}${userID}/supported-projects/`)
+      .then((results) => {
+        return results.json();
+      })
+      .then((data) => {
+        setProjectList(data);
+        setLoading(false);
+      });
+  }, [id, userID]);
+
+  if (loading) {
+    return <FullPageLoader />;
   }
-  return <>{loader}</>;
+
+  return (
+    <div>
+      <TitleText title="Profile" />
+      <UserDetails userProfile={userProfile} />
+      <div className="project-cards">
+        <h2>{`Projects ${userProfile.preferredname} has supported`}</h2>
+        {projectList.map((projectData, key) => {
+          return (
+            <ProjectCard
+              key={key}
+              projectData={projectData}
+              convertDateTime={convertDateTime}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
 export default UserProfile;

@@ -1,22 +1,23 @@
 .animal-logo-ctn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 4.5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 4.5vw;
 }
 
 .animal-logo {
-    width: 4vw;
-    height: 100%;
-
+  width: 4vw;
+  height: 100%;
 }
 .selected {
-    /* filter: invert(7%) sepia(100%) saturate(7351%) hue-rotate(248deg) brightness(114%) contrast(141%); */
-    filter: invert(66%) sepia(17%) saturate(408%) hue-rotate(322deg) brightness(90%) contrast(86%);
+  /* filter: invert(7%) sepia(100%) saturate(7351%) hue-rotate(248deg) brightness(114%) contrast(141%); */
+  filter: invert(66%) sepia(17%) saturate(408%) hue-rotate(322deg)
+    brightness(90%) contrast(86%);
 }
 
 .animal-label {
-    font-size: 1em;
-    margin-top: 0.3em;
-    text-align: center;
+  font-size: 1em;
+  margin-top: 0.3em;
+  margin-bottom: 0em;
+  text-align: center;
 }

@@ -6,12 +6,19 @@ import "./HomePage.css";
 
 function HomePage({ convertDateTime }) {
   const [projectList, setProjectList] = useState([]);
-
   const [loader, showLoader, hideLoader] = useFullPageLoader();
+  const userID = window.localStorage.getItem("userID");
+
+  const filterProjects = () => {
+    let url = "projects/";
+    if (userID != null) url = `${userID}/recommended/`;
+    console.log(url);
+    return url;
+  };
 
   useEffect(() => {
     showLoader();
-    fetch(`${process.env.REACT_APP_API_URL}projects/`)
+    fetch(`${process.env.REACT_APP_API_URL}${filterProjects()}`)
       .then((results) => {
         return results.json();
       })
@@ -23,7 +30,9 @@ function HomePage({ convertDateTime }) {
 
   return (
     <div className="project-cards">
-      <TitleText title="Featured Projects" />
+      <TitleText
+        title={userID != null ? "Recommended Projects" : "Featured Projects"}
+      />
       {projectList.map((projectData, key) => {
         return (
           <ProjectCard

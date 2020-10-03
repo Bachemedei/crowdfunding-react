@@ -42,6 +42,8 @@ function LogIn() {
     if (credentials.username && credentials.password) {
       postData().then((response) => {
         window.localStorage.setItem("token", response.token);
+        window.localStorage.setItem("userID", response.user_id);
+        window.localStorage.setItem("is_owner", response.is_owner);
         if (response.token != null) {
           history.push("/");
         }

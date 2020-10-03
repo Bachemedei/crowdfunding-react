@@ -1,21 +1,24 @@
 html {
-    /* background: linear-gradient(0deg, rgba(209,195,195,1) 30%, rgba(75,70,70,1) 75%, rgba(0,0,0,1) 100%); */
-    background: #efe9e9;
-    font-family: 'Roboto', sans-serif;
-    font-size: 2vw;
-    margin: 6vw;
-    margin-top: 2vw;
+  /* background: linear-gradient(0deg, rgba(209,195,195,1) 30%, rgba(75,70,70,1) 75%, rgba(0,0,0,1) 100%); */
+  background: #efe9e9;
+  font-family: "Roboto", sans-serif;
+  font-size: 2vw;
+  margin: 6vw;
+  margin-top: 2vw;
+}
+
+h2 {
+  text-align: center;
 }
 
 a {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
 .contents {
-    background-color: #f9f9f9;
-    padding: 2vw;
-    margin: 3vw;
-    border-radius: 0.3em;
+  background-color: #f9f9f9;
+  padding: 2vw;
+  margin: 3vw;
+  border-radius: 0.3em;
 }
-

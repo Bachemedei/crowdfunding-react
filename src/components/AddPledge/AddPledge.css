@@ -1,0 +1,10 @@
+.pledge-form {
+  border-radius: 0.3em;
+  width: 70%;
+  background-color: #f9f9f9;
+  margin: 1vw;
+}
+
+.pledge-form .form-item {
+  width: 95%;
+}

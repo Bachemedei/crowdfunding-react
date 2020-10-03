@@ -11,6 +11,8 @@ import UserProfile from "./pages/UserProfile/UserProfile";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 // import FullPageLoader from "./components/FullPageLoader/FullPageLoader";
 import "./App.css";
+import CreateProject from "./pages/CreateProject/CreateProject";
+import OwnerRoute from "./components/PrivateRouteOwner/OwnerRoute";
 
 function App() {
   // Variables
@@ -56,8 +58,11 @@ function App() {
             <PrivateRoute path="/register-shelter">
               <RegisterShelter />
             </PrivateRoute>
+            <OwnerRoute path="/create-project">
+              <CreateProject />
+            </OwnerRoute>
             <Route path="/profile">
-              <UserProfile />
+              <UserProfile convertDateTime={convertDateTime} />
             </Route>
             <Route path="/">
               <Home convertDateTime={convertDateTime} />

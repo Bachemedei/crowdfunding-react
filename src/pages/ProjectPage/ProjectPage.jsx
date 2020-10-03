@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import AnimalLogo from "../../components/AnimalLogo/AnimalLogo";
+import PledgesCard from "../../components/PledgesCard/PledgesCard";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import ProjectStatus from "../../components/ProjectStatus/ProjectStatus";
 import TitleText from "../../components/TitleText/TitleText";
@@ -29,41 +30,32 @@ function ProjectPage({ convertDateTime }) {
   if (projectData.species !== undefined) {
     return (
       <div className="project-detail" key={projectData.id}>
-        {console.log("message", projectData)}
-        {/* {console.log("species", projectData.species)} */}
         <TitleText title={projectData.title} />
         <div className="project-summary">
-          <img
-            className="project-img"
-            src={projectData.image}
-            alt={projectData.title}
-          />
-          <div className="project-info">
-            <p>{projectData.shelter}</p>
+          <div className="img-and-icon">
+            <img
+              className="project-img"
+              src={projectData.image}
+              alt={projectData.title}
+            />
             <div className="project-animals">
               {projectData.species.map((species, index) => {
                 return <AnimalLogo species={species} key={index} />;
               })}
             </div>
+          </div>
+          <div className="project-info">
+            <h3>{projectData.shelter}</h3>
             <ProjectStatus
               opened={projectData.is_open}
               date={convertDateTime(projectData.date_created)}
             />
-            <ProgressBar data={projectData} />
+            <ProgressBar data={projectData} className="progress-bar" />
           </div>
         </div>
         <div className="project-body">
-          <p>Description: {projectData.description}</p>
-          <p>Pledges:</p>
-          <ul>
-            {projectData.pledges.map((pledgeData, key) => {
-              return (
-                <li key={key}>
-                  ${pledgeData.amount} from {pledgeData.supporter}
-                </li>
-              );
-            })}
-          </ul>
+          <p>{projectData.description}</p>
+          <PledgesCard pledges={projectData.pledges} />
         </div>
       </div>
     );

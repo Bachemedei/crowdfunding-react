@@ -1,0 +1,37 @@
+.profile-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: space-between;
+}
+
+.profile-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 2vw;
+}
+
+.profile-right h3 {
+  margin-top: 0px;
+}
+
+.profile-pic {
+  width: 35vw;
+}
+
+.profile-pets {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pet-likes {
+  display: flex;
+  align-items: center;
+}
