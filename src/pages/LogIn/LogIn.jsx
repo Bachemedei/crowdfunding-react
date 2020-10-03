@@ -77,7 +77,7 @@ function LogIn() {
         onChange={handleChange}
         onKeyPress={handleKeyPress}
       />
-      <Button value="Log in" onClick={handleSubmit} />
+      <Button value="Log in" onClick={handleSubmit} type="submit" />
     </div>
   );
 }

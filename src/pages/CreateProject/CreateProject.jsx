@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import AnimalCategories from "../../components/AnimalCategories/AnimalCategories";
-import Button from "../../components/Button/Button";
-import TextArea from "../../components/TextAreaInput/TextArea";
-import TextInput from "../../components/TextInput/TextInput";
-import TitleText from "../../components/TitleText/TitleText";
-import "./CreateProject.css";
+import React, { useState } from "react"
+import { useHistory } from "react-router-dom"
+import AnimalCategories from "../../components/AnimalCategories/AnimalCategories"
+import Button from "../../components/Button/Button"
+import TextArea from "../../components/TextAreaInput/TextArea"
+import TextInput from "../../components/TextInput/TextInput"
+import TitleText from "../../components/TitleText/TitleText"
+import "./CreateProject.css"
 
 function CreateProject() {
   // Variables
@@ -17,18 +17,18 @@ function CreateProject() {
     is_open: "",
     date_created: "",
     species: [],
-  });
-  const history = useHistory();
-  const token = window.localStorage.getItem("token");
+  })
+  const history = useHistory()
+  const token = window.localStorage.getItem("token")
 
   // Methods
   const handleChange = (e) => {
-    const { id, value } = e.target;
+    const { id, value } = e.target
     setProject((projectDetails) => ({
       ...projectDetails,
       [id]: value,
-    }));
-  };
+    }))
+  }
 
   // This triggers when an animal logo is clicked and adds or removes that animal to the petlike value of state
   const onAnimalClick = (animal, selected) => {
@@ -36,15 +36,15 @@ function CreateProject() {
       setProject((project) => ({
         ...project,
         species: [...project.species, animal],
-      }));
+      }))
     }
     if (!selected) {
       setProject((project) => ({
         ...project,
         species: project.species.filter((critter) => critter !== animal),
-      }));
+      }))
     }
-  };
+  }
 
   const postData = async () => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}projects/`, {
@@ -54,12 +54,12 @@ function CreateProject() {
         Authorization: `Token ${token}`,
       },
       body: JSON.stringify(project),
-    });
-    return response.json();
-  };
+    })
+    return response.json()
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (
       project.title &&
       project.description &&
@@ -70,16 +70,10 @@ function CreateProject() {
       project.species
     ) {
       postData().then((response) => {
-        history.push("/");
-      });
+        history.push("/")
+      })
     }
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      handleSubmit(e);
-    }
-  };
+  }
 
   return (
     <div className="submit-project-form">
@@ -124,9 +118,9 @@ function CreateProject() {
         label="Select Animal Species"
         onAnimalClick={onAnimalClick}
       />
-      <Button value="Create Project" onClick={handleSubmit} />
+      <Button value="Create Project" onClick={handleSubmit} type="submit" />
     </div>
-  );
+  )
 }
 
-export default CreateProject;
+export default CreateProject

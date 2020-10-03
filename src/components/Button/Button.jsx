@@ -4,7 +4,7 @@ import "./Button.css";
 function Button({ value, ...props }) {
   return (
     <form className="btn-container">
-      <input className="btn" type="submit" value={value} {...props} />
+      <input className="btn" value={value} {...props} />
     </form>
   );
 }

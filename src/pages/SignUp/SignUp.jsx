@@ -124,7 +124,7 @@ function SignUp() {
         onChange={handleChange}
         onKeyPress={handleKeyPress}
       />
-      <Button value="Sign Up" onClick={handleSubmit} />
+      <Button value="Sign Up" onClick={handleSubmit} type="submit" />
     </div>
   );
 }

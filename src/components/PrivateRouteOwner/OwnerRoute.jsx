@@ -1,24 +1,43 @@
-import { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react"
+import { useHistory } from "react-router-dom"
+import FullPageLoader from "../FullPageLoader/FullPageLoader"
 
 function OwnerRoute({ path, ...props }) {
-  const [ownerStatus, setOwnerStatus] = useState(false);
+  const history = useHistory()
 
-  const history = useHistory();
-
-  const location = useLocation();
+  const [loading, setLoading] = useState(true)
+  const [shelterIsApproved, setShelterApproved] = useState(null)
 
   useEffect(() => {
-    const isOwner = window.localStorage.getItem("is_owner");
-    isOwner === "true" ? setOwnerStatus(true) : setOwnerStatus(false);
-  }, [location]);
+    const userID = window.localStorage.getItem("userID")
 
-  if (ownerStatus) {
-    return props.children;
-  } else {
-    history.push("/login");
-    return null;
+    if (userID == null) {
+      setShelterApproved(false)
+      console.log("Not logged in --> /login")
+      history.push("/login")
+      return
+    }
+
+    fetch(`${process.env.REACT_APP_API_URL}${userID}/shelter/`)
+      .then((results) => {
+        return results.json()
+      })
+      .then((data) => {
+        setLoading(false)
+        setShelterApproved(data.is_approved)
+      })
+  }, [history])
+
+  console.log({ shelterIsApproved })
+
+  if (loading) {
+    return <FullPageLoader />
+  } else if (shelterIsApproved) {
+    return props.children
+  } else if (shelterIsApproved == null) {
+    history.push("register-shelter")
+    return null
   }
 }
 
-export default OwnerRoute;
+export default OwnerRoute

@@ -55,7 +55,7 @@ function ProjectPage({ convertDateTime }) {
         </div>
         <div className="project-body">
           <p>{projectData.description}</p>
-          <PledgesCard pledges={projectData.pledges} />
+          <PledgesCard projectData={projectData} />
         </div>
       </div>
     );

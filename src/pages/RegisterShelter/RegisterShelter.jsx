@@ -109,7 +109,7 @@ function RegisterShelter() {
         onChange={handleChange}
         onKeyPress={handleKeyPress}
       />
-      <Button value="Register" onClick={handleSubmit} />
+      <Button value="Register" onClick={handleSubmit} type="submit" />
     </div>
   );
 }
