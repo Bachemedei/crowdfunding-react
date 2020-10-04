@@ -13,6 +13,7 @@ function TextArea({ label, placeholder, type, value, ...props }) {
           name={label}
           defaultValue={value}
           {...props}
+          noValidate
         />
       </label>
     </form>

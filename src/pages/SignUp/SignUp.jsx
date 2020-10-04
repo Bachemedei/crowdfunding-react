@@ -9,6 +9,7 @@ import "./SignUp.css"
 
 function SignUp() {
   // Variables
+  const history = useHistory()
   const [userDetails, setUserDetails] = useState({
     preferredname: "",
     email: "",
@@ -17,13 +18,71 @@ function SignUp() {
     profile_pic: "",
     password: "",
   })
-  const history = useHistory()
+
+  const [errorMessages, setErrors] = useState({
+    preferredname: "",
+    email: "",
+    password: "",
+  })
 
   // Methods
+  // This will check if the email address entered is a valid address
+  const validEmailRegex = RegExp(
+    /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
+  )
+
+  // Check input to check if it matches requirements and set error state
+  const validateInput = () => {
+    let errors = { ...errorMessages }
+
+    errors.preferredname =
+      userDetails.preferredname.length < 2
+        ? "Given name must be 2 characters or longer!"
+        : ""
+
+    errors.email = validEmailRegex.test(userDetails.email)
+      ? ""
+      : "Enter a valid email address!"
+
+    errors.password =
+      userDetails.password.length < 8
+        ? "Password must be 8 characters or longer"
+        : ""
+
+    return errors
+    // switch () {
+    //   case "preferredname":
+    //     errors.preferredname =
+    //       value.length < 2 ? "Given name must be 2 characters or longer!" : ""
+    //     break
+    //   case "email":
+    //     errors.email = validEmailRegex.test(value)
+    //       ? ""
+    //       : "Enter a valid email address"
+    //     break
+    //   case "password":
+    //     errors.password =
+    //       value.length < 8 ? "Password must be 8 characters or longer" : ""
+    //     break
+    //   default:
+    //     break
+    // }
+  }
+
+  // Find an if an instance of an error message exists, and return either true or false
+  const validateForm = () => {
+    const errors = validateInput()
+    const firstValidationError = Object.values(errors).find(
+      (error) => error.length > 0
+    )
+    setErrors(errors)
+    return firstValidationError === undefined
+  }
 
   // This will trigger when any form field changes and will set the state
   const handleChange = (e) => {
     const { id, value } = e.target
+
     setUserDetails((prevUserDetails) => ({
       ...prevUserDetails,
       [id]: value,
@@ -59,20 +118,14 @@ function SignUp() {
   }
 
   const handleSubmit = (e) => {
-    console.log(userDetails)
     e.preventDefault()
-    if (
-      userDetails.preferredname &&
-      userDetails.email &&
-      userDetails.petlikes &&
-      userDetails.bio &&
-      userDetails.profile_pic &&
-      userDetails.password
-    ) {
+    if (validateForm(errorMessages)) {
       postData().then((response) => {
         console.log(response)
         history.push("/login")
       })
+    } else {
+      console.log("invalid form")
     }
   }
 
@@ -91,12 +144,14 @@ function SignUp() {
         type="text"
         label="Given Name"
         onChange={handleChange}
+        error={errorMessages.preferredname}
       />
       <TextInput
         id="email"
         type="email"
         label="Email Address"
         onChange={handleChange}
+        error={errorMessages.email}
       />
       <AnimalCategories
         id="petlikes"
@@ -123,6 +178,7 @@ function SignUp() {
         label="Password"
         onChange={handleChange}
         onKeyPress={handleKeyPress}
+        error={errorMessages.password}
       />
       <Button value="Sign Up" onClick={handleSubmit} type="submit" />
     </div>
