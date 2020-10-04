@@ -10,9 +10,10 @@ function OwnerRoute({ path, ...props }) {
 
   useEffect(() => {
     const userID = window.localStorage.getItem("userID")
+    let isMounted = true
 
     if (userID == null) {
-      setShelterApproved(false)
+      if (isMounted) setShelterApproved(false)
       console.log("Not logged in --> /login")
       history.push("/login")
       return
@@ -23,19 +24,21 @@ function OwnerRoute({ path, ...props }) {
         return results.json()
       })
       .then((data) => {
-        setLoading(false)
-        setShelterApproved(data.is_approved)
+        if (isMounted) setShelterApproved(data.is_approved)
+        if (isMounted) setLoading(false)
       })
+    return () => {
+      isMounted = false
+    }
   }, [history])
-
-  console.log({ shelterIsApproved })
 
   if (loading) {
     return <FullPageLoader />
   } else if (shelterIsApproved) {
     return props.children
   } else if (shelterIsApproved == null) {
-    history.push("register-shelter")
+    history.push("/register-shelter")
+    console.log("Not approved --> /register-shelter")
     return null
   }
 }

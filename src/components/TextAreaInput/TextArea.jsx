@@ -1,7 +1,8 @@
 import React from "react"
 import "./TextArea.css"
+import ValidationError from "../ValidationError/ValidationError"
 
-function TextArea({ label, placeholder, type, value, ...props }) {
+function TextArea({ label, placeholder, type, value, error, ...props }) {
   return (
     <form>
       <label className="form-item">
@@ -15,6 +16,7 @@ function TextArea({ label, placeholder, type, value, ...props }) {
           {...props}
           noValidate
         />
+        <ValidationError error={error} />
       </label>
     </form>
   )

@@ -15,7 +15,8 @@ function SignUp() {
     email: "",
     petlikes: [],
     bio: "",
-    profile_pic: "",
+    profile_pic:
+      "https://image.freepik.com/free-vector/cat-paw-footprint_71328-557.jpg",
     password: "",
   })
 
@@ -23,6 +24,7 @@ function SignUp() {
     preferredname: "",
     email: "",
     password: "",
+    petlikes: [],
   })
 
   // Methods
@@ -49,24 +51,12 @@ function SignUp() {
         ? "Password must be 8 characters or longer"
         : ""
 
+    errors.petlikes =
+      userDetails.petlikes.length < 1
+        ? "Select at least one favourite animal!"
+        : ""
+
     return errors
-    // switch () {
-    //   case "preferredname":
-    //     errors.preferredname =
-    //       value.length < 2 ? "Given name must be 2 characters or longer!" : ""
-    //     break
-    //   case "email":
-    //     errors.email = validEmailRegex.test(value)
-    //       ? ""
-    //       : "Enter a valid email address"
-    //     break
-    //   case "password":
-    //     errors.password =
-    //       value.length < 8 ? "Password must be 8 characters or longer" : ""
-    //     break
-    //   default:
-    //     break
-    // }
   }
 
   // Find an if an instance of an error message exists, and return either true or false
@@ -106,7 +96,6 @@ function SignUp() {
   }
 
   const postData = async () => {
-    console.log("post data function")
     const response = await fetch(`${process.env.REACT_APP_API_URL}users/`, {
       method: "post",
       headers: {
@@ -143,6 +132,7 @@ function SignUp() {
         id="preferredname"
         type="text"
         label="Given Name"
+        placeholder="Buddy"
         onChange={handleChange}
         error={errorMessages.preferredname}
       />
@@ -150,6 +140,7 @@ function SignUp() {
         id="email"
         type="email"
         label="Email Address"
+        placeholder="buddy@goodboy.com"
         onChange={handleChange}
         error={errorMessages.email}
       />
@@ -158,6 +149,7 @@ function SignUp() {
         label="Select Your Favourite Animals"
         onChange={handleChange}
         onAnimalClick={onAnimalClick}
+        error={errorMessages.petlikes}
       />
       <TextArea
         id="bio"
@@ -170,12 +162,14 @@ function SignUp() {
         id="profile_pic"
         type="url"
         label="Profile Picture"
+        placeholder="Add a URL to your best glamour shot"
         onChange={handleChange}
       />
       <TextInput
         id="password"
         type="password"
         label="Password"
+        placeholder="xxxxxxxx"
         onChange={handleChange}
         onKeyPress={handleKeyPress}
         error={errorMessages.password}

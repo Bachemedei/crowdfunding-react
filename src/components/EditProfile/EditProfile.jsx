@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { useHistory } from "react-router-dom"
 import AnimalCategories from "../../components/AnimalCategories/AnimalCategories"
 import Button from "../../components/Button/Button"
 import TextArea from "../../components/TextAreaInput/TextArea"
@@ -8,7 +7,6 @@ import "./EditProfile.css"
 
 function EditProfile({ userProfile }) {
   const token = window.localStorage.getItem("token")
-  const history = useHistory()
   const [updatedUserDetails, setUpdatedUser] = useState({
     petlikes: userProfile.petlikes,
   })

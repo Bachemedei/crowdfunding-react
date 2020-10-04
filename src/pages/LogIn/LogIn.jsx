@@ -66,14 +66,14 @@ function LogIn() {
         id="username"
         type="email"
         label="Email"
-        placeholder="email@email.com"
+        placeholder="felix@meow.com"
         onChange={handleChange}
       />
       <TextInput
         id="password"
         type="password"
         label="Password"
-        placeholder="password"
+        placeholder="xxxxxxxx"
         onChange={handleChange}
         onKeyPress={handleKeyPress}
       />

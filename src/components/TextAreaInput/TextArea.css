@@ -1,6 +1,14 @@
 .text-area {
-    height: 5vw;
-    width: 70%;
-    resize: none;
-    background-color: #f9f9f9;
+  height: 5vw;
+  width: 70%;
+  resize: none;
+  background-color: #f9f9f9;
+  /* font-family: "Roboto", sans-serif;
+  font-size: 1.3vw; */
+  /* border: 0.05em solid black; */
+}
+
+.text-area:focus {
+  border: 0.15em solid black;
+  border-radius: 0.2em;
 }

@@ -1,28 +1,39 @@
-.btn-container {
-  margin: 1vw;
+.btn-toggle-container {
+  padding: 1vw;
 }
 
-.btn {
+label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-toggle {
   display: inline-block;
   padding: 0.35em 1.2em;
   border: 0.1em solid #efe9e9;
-  margin: 0 0.3em 0.3em 0;
+  margin: 1vw;
   border-radius: 0.5em;
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
-  color: #efe9e9;
   text-align: center;
   transition: all 0.2s;
+  width: 8vw;
+  cursor: pointer;
+}
+
+.Active {
+  color: #efe9e9;
   background-color: black;
 }
 
-.btn:hover {
+.Inactive {
   color: #000000;
-  background-color: lightgray;
+  background-color: #efe9e9;
 }
 
-.btn:focus {
+.btn-toggle:focus {
   outline: none;
 }

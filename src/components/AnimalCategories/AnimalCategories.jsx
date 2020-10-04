@@ -1,10 +1,11 @@
-import React from "react";
-import AnimalSelect from "../AnimalSelect/AnimalSelect";
-import "./AnimalCategories.css";
-import { animalLogos } from "../../images";
+import React from "react"
+import AnimalSelect from "../AnimalSelect/AnimalSelect"
+import "./AnimalCategories.css"
+import { animalLogos } from "../../images"
+import ValidationError from "../ValidationError/ValidationError"
 
-function AnimalCategories({ label, onAnimalClick }) {
-  const animals = Object.keys(animalLogos);
+function AnimalCategories({ label, onAnimalClick, error }) {
+  const animals = Object.keys(animalLogos)
 
   return (
     <div className="animal-categories">
@@ -18,8 +19,9 @@ function AnimalCategories({ label, onAnimalClick }) {
           />
         ))}
       </div>
+      <ValidationError error={error} />
     </div>
-  );
+  )
 }
 
-export default AnimalCategories;
+export default AnimalCategories

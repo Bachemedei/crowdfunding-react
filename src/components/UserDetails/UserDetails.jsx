@@ -43,6 +43,7 @@ function UserDetails({ userProfile, ...props }) {
       </div>
     )
   }
+  return null
 }
 
 export default UserDetails

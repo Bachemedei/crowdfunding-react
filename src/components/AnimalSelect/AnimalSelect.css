@@ -1,21 +1,19 @@
-
-
 .animal {
-    width: 4vw;
-    height: 100%;
+  width: 4vw;
+  height: 100%;
 }
 
 .label {
-    font-size: 0.6em;
-    margin-top: 0;
-    text-align: center;
+  font-size: 0.6em;
+  margin-top: 0;
+  text-align: center;
 }
 
 .invisible-btn {
-    background: transparent;
-    border: none !important;
+  background: transparent;
+  border: none !important;
 }
 
 .invisible-btn:focus {
-    outline: none;
+  outline: none;
 }
