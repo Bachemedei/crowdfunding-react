@@ -35,18 +35,6 @@ function UserProfile({ convertDateTime }) {
       })
   }, [id, userID])
 
-  // Get users supported projects
-  // useEffect(() => {
-  //   fetch(`${process.env.REACT_APP_API_URL}${userID}/supported-projects/`)
-  //     .then((results) => {
-  //       return results.json()
-  //     })
-  //     .then((data) => {
-  //       setProjectList(data)
-  //       setLoading(false)
-  //     })
-  // }, [id, userID])
-
   const handleClick = () => {
     setEditProfile(!editProfile)
   }
@@ -67,19 +55,24 @@ function UserProfile({ convertDateTime }) {
             <UserDetails userProfile={userProfile} onClick={handleClick} />
           </>
         )}
-
-        <div className="project-cards">
-          <h2>{`Projects ${userProfile.preferredname} has supported`}</h2>
-          {projectList.map((projectData, key) => {
-            return (
-              <ProjectCard
-                key={key}
-                projectData={projectData}
-                convertDateTime={convertDateTime}
-              />
-            )
-          })}
-        </div>
+        {projectList.length === 0 ? (
+          <></>
+        ) : (
+          <>
+            <div className="project-cards">
+              <h2>{`Projects ${userProfile.preferredname} has supported`}</h2>
+              {projectList.map((projectData, key) => {
+                return (
+                  <ProjectCard
+                    key={key}
+                    projectData={projectData}
+                    convertDateTime={convertDateTime}
+                  />
+                )
+              })}
+            </div>
+          </>
+        )}
       </div>
     )
   }

@@ -1,8 +1,8 @@
 import React from "react"
 import Button from "../Button/Button"
-import "./EditDetails.css"
+import "./EditButton.css"
 
-function EditDetails({ contentOwner, ...props }) {
+function EditButton({ contentOwner, ...props }) {
   const userID = window.localStorage.getItem("userID")
   console.log("contentOwner", contentOwner)
   console.log("userID", userID)
@@ -17,4 +17,4 @@ function EditDetails({ contentOwner, ...props }) {
   return null
 }
 
-export default EditDetails
+export default EditButton

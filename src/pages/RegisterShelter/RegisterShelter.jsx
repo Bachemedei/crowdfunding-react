@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
+import Modal from "react-modal"
 import AnimalCategories from "../../components/AnimalCategories/AnimalCategories"
 import Button from "../../components/Button/Button"
 import TextArea from "../../components/TextAreaInput/TextArea"
@@ -11,20 +12,31 @@ function RegisterShelter() {
   // Variables
   const history = useHistory()
   const token = window.localStorage.getItem("token")
+  const [modalIsOpen, setIsOpen] = useState(false)
   const [shelterDetails, setShelterDetails] = useState({
     name: "",
     address: "",
     description: "",
     species: [],
     charityregister: "",
+    is_approved: false,
   })
   const [errorMessages, setErrors] = useState({
     name: "",
     address: "",
     description: "",
-    species: [],
+    species: "",
     charityregister: "",
   })
+
+  const openModal = () => {
+    setIsOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsOpen(false)
+    history.push("/")
+  }
 
   // Methods
 
@@ -46,7 +58,7 @@ function RegisterShelter() {
         : ""
 
     errors.charityregister =
-      shelterDetails.charityregister.length !== 11
+      shelterDetails.charityregister.length !== 9
         ? "ACNC Charity Register ID must be 11 digits long!"
         : ""
 
@@ -108,7 +120,7 @@ function RegisterShelter() {
     if (validateForm(errorMessages)) {
       postData().then((response) => {
         console.log(response)
-        history.push("/")
+        setIsOpen(true)
       })
     } else {
       console.log("invalid form")
@@ -163,6 +175,26 @@ function RegisterShelter() {
         error={errorMessages.description}
       />
       <Button value="Register" onClick={handleSubmit} type="submit" />
+      <div className="modal-container">
+        <Modal
+          className="register-shelter-modal"
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          contentLabel="Confirm Delete"
+        >
+          <h2>Shelter Registration Pending Approval</h2>
+          <p>
+            Thanks for registering an animal rescue with Earlyadoptr. Admins
+            will review your shelter registration and once approved you will be
+            able to create projects. This approval process is required to ensure
+            that all animal rescues are registered with the Australian Charity
+            and Not-for-profit Commision
+          </p>
+          <div className="modal-btns">
+            <Button onClick={closeModal} value="Okay!" type="button" />
+          </div>
+        </Modal>
+      </div>
     </div>
   )
 }

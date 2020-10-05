@@ -1,0 +1,32 @@
+.delete-modal {
+  /* border: 1px black solid; */
+  outline: none;
+  border-radius: 0.3vw;
+  background-color: #efe9e9;
+  opacity: 1;
+  padding: 1vw;
+  /* top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%); */
+}
+
+.delete-modal:active {
+  outline: none;
+}
+
+.delete-modal h2 {
+  padding-top: 1vw;
+}
+
+.modal-btns {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1vw;
+}
+
+.modal-btns input {
+  font-size: 1em;
+}

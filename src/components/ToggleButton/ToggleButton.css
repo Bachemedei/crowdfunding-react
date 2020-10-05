@@ -18,9 +18,10 @@ label {
   text-decoration: none;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
+  font-size: 1.7vw;
   text-align: center;
   transition: all 0.2s;
-  width: 8vw;
+  width: 10vw;
   cursor: pointer;
 }
 

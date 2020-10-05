@@ -1,21 +1,28 @@
-import React, { useState } from "react";
-import PledgeInfo from "../PledgeInfo/PledgeInfo";
-import Button from "../Button/Button";
-import "./PledgesCard.css";
-import AddPledge from "../AddPledge/AddPledge";
+import React, { useState } from "react"
+import PledgeInfo from "../PledgeInfo/PledgeInfo"
+import Button from "../Button/Button"
+import "./PledgesCard.css"
+import AddPledge from "../AddPledge/AddPledge"
 
 function PledgesCard({ projectData }) {
-  const [pledgeForm, setPledgeForm] = useState(false);
+  const [pledgeForm, setPledgeForm] = useState(false)
 
   const handleClick = () => {
-    setPledgeForm(!pledgeForm);
-  };
+    setPledgeForm(!pledgeForm)
+  }
   return (
     <div className="pledges-list">
       <h4>Supported by:</h4>
-      {projectData.pledges.map((pledge, index) => {
-        return <PledgeInfo pledge={pledge} key={index} />;
-      })}
+      {projectData.pledges.length === 0 ? (
+        <p>
+          Uh Oh...Looks like no one has supported this project yet. Maybe you
+          should be the first?
+        </p>
+      ) : (
+        projectData.pledges.map((pledge, index) => {
+          return <PledgeInfo pledge={pledge} key={index} />
+        })
+      )}
       <Button
         value="Support This Project!"
         onClick={handleClick}
@@ -23,7 +30,7 @@ function PledgesCard({ projectData }) {
       />
       {pledgeForm ? <AddPledge projectId={projectData.id} /> : null}
     </div>
-  );
+  )
 }
 
-export default PledgesCard;
+export default PledgesCard

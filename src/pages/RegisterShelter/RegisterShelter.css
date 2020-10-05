@@ -1,5 +1,32 @@
 .register-shelter-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.register-shelter-modal {
+  outline: none;
+  border-radius: 0.3vw;
+  background-color: #efe9e9;
+  opacity: 1;
+  padding: 1vw;
+  width: 70%;
+  top: 100%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(18%, 50%);
+  padding: 2vw;
+}
+
+.register-shelter-modal p {
+  text-align: center;
+  padding: 1vw;
 }

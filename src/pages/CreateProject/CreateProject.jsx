@@ -18,7 +18,7 @@ function CreateProject() {
     description: "",
     goal: "",
     image: "",
-    is_open: "",
+    is_open: false,
     date_created: date.toISOString(),
     species: [],
   })
@@ -29,7 +29,6 @@ function CreateProject() {
     goal: "",
     image: "",
     is_open: "",
-    date_created: "",
     species: "",
   })
 
@@ -46,11 +45,6 @@ function CreateProject() {
     errors.goal = project.goal.length < 1 ? "Enter a financial goal" : ""
 
     errors.image = project.image.length < 8 ? "Enter a valid image URL" : ""
-
-    errors.is_open =
-      project.is_open.length < 4
-        ? "Select if the project is open or closed"
-        : ""
 
     errors.date_created =
       project.date_created.length < 1 ? "Enter starting date" : ""
@@ -119,7 +113,7 @@ function CreateProject() {
     if (validateForm(errorMessages)) {
       postData().then((response) => {
         console.log(response)
-        history.push("/login")
+        history.push(`project/${response.id}/`)
       })
     } else {
       console.log("invalid form")
@@ -166,21 +160,6 @@ function CreateProject() {
         placeholder="Enter a URL to your most eye catching photo"
         onChange={handleChange}
         error={errorMessages.image}
-      />
-      {/* <TextInput
-        id="is_open"
-        type="text"
-        label="Project Status"
-        onChange={handleChange}
-        error={errorMessages.is_open}
-      /> */}
-
-      <TextInput
-        id="date_created"
-        type="text"
-        label="Date Created"
-        onChange={handleChange}
-        error={errorMessages.date_created}
       />
       <AnimalCategories
         label="Select Animal Species"

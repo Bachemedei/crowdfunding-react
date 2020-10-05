@@ -1,6 +1,6 @@
 import React from "react"
 import AnimalLogo from "../../components/AnimalLogo/AnimalLogo"
-import EditDetails from "../../components/EditDetails/EditDetails"
+import EditButton from "../../components/EditButton/EditButton"
 import "./UserDetails.css"
 
 function UserDetails({ userProfile, ...props }) {
@@ -28,7 +28,7 @@ function UserDetails({ userProfile, ...props }) {
               <h3>Name: </h3>
               <p>{userProfile.preferredname}</p>
             </div>
-            <EditDetails contentOwner={userProfile.id} {...props} />
+            <EditButton contentOwner={userProfile.id} {...props} />
           </div>
           <div className="profile-email">
             <h3>Email Address: </h3>

@@ -9,3 +9,7 @@
   flex-direction: column;
   align-items: center;
 }
+
+.pledges-list p {
+  padding: 1vw;
+}

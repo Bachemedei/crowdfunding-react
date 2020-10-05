@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import AnimalLogo from "../../components/AnimalLogo/AnimalLogo"
-import EditDetails from "../../components/EditDetails/EditDetails"
+import EditButton from "../../components/EditButton/EditButton"
 import PledgesCard from "../../components/PledgesCard/PledgesCard"
 import ProgressBar from "../../components/ProgressBar/ProgressBar"
 import ProjectStatus from "../../components/ProjectStatus/ProjectStatus"
 import TitleText from "../../components/TitleText/TitleText"
 import FullPageLoader from "../../components/FullPageLoader/FullPageLoader"
 import "./ProjectPage.css"
-import DeleteContent from "../../components/DeleteContent/DeleteContent"
+import DeleteButton from "../../components/DeleteButton/DeleteButton"
 import EditProject from "../../components/EditProject/EditProject"
+import DeleteProject from "../../components/DeleteProject/DeleteProject"
 
 function ProjectPage({ convertDateTime }) {
+  const token = window.localStorage.getItem("token")
+  const history = useHistory()
   const [projectData, setProjectData] = useState({ pledges: [] })
   const [editProject, setEditProject] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -28,8 +31,25 @@ function ProjectPage({ convertDateTime }) {
       })
   }, [id])
 
-  const handleClick = () => {
+  const handleEditClick = () => {
     setEditProject(!editProject)
+  }
+
+  const handleDeleteClick = () => {
+    fetch(`${process.env.REACT_APP_API_URL}projects/${id}/`, {
+      method: "delete",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      },
+    })
+      .then((results) => {
+        history.push("/")
+        return results.text()
+      })
+      .then((data) => {
+        console.log(data)
+      })
   }
 
   if (loading) {
@@ -46,11 +66,16 @@ function ProjectPage({ convertDateTime }) {
       <div className="project-detail" key={projectData.id}>
         <TitleText title={projectData.title} />
         <div className="owner-options">
-          <EditDetails
+          <EditButton
             contentOwner={projectData.owner_id}
-            onClick={handleClick}
+            onClick={handleEditClick}
           />
-          <DeleteContent contentOwner={projectData.owner_id} />
+          <DeleteProject contentOwner={projectData.owner_id} />
+          {/* <DeleteButton
+            contentOwner={projectData.owner_id}
+            onClick={openModal}
+          /> */}
+          <DeleteProject handleDeleteClick={handleDeleteClick} />
         </div>
         <div className="project-summary">
           <div className="img-and-icon">

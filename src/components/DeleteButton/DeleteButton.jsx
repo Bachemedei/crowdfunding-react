@@ -1,8 +1,8 @@
 import React from "react"
 import Button from "../Button/Button"
-import "./DeleteContent.css"
+import "./DeleteButton.css"
 
-function DeleteContent({ contentOwner, ...props }) {
+function DeleteButton({ contentOwner, ...props }) {
   const userID = window.localStorage.getItem("userID")
   console.log("contentOwner", contentOwner)
   console.log("userID", userID)
@@ -17,4 +17,4 @@ function DeleteContent({ contentOwner, ...props }) {
   return null
 }
 
-export default DeleteContent
+export default DeleteButton
