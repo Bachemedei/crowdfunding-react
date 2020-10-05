@@ -18,7 +18,9 @@ function ToggleButton({ onButtonClick, valueOne, valueTwo, label, ...props }) {
       <label>
         {label}:
         <input
-          className={`btn-toggle ${activeButton.active ? valueOne : valueTwo}`}
+          className={`btn-toggle ${
+            activeButton.active ? `active` : `inactive`
+          }`}
           type="button"
           onClick={handleClick}
           value={activeButton.active ? valueOne : valueTwo}

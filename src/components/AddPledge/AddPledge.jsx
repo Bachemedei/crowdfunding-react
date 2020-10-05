@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import TextInput from "../TextInput/TextInput"
 import TextArea from "../TextAreaInput/TextArea"
 import Button from "../Button/Button"
+import ToggleButton from "../ToggleButton/ToggleButton"
 import "./AddPledge.css"
 
 function AddPledge({ projectId }) {
@@ -39,10 +40,16 @@ function AddPledge({ projectId }) {
     e.preventDefault()
     if (pledge.amount && pledge.comment) {
       postData().then((response) => {
-        // history.push(`/project/${projectId}`);
         window.location.reload()
       })
     }
+  }
+
+  const onButtonClick = (activeButton) => {
+    setPledge((pledge) => ({
+      ...pledge,
+      anonymous: activeButton,
+    }))
   }
 
   return (
@@ -60,6 +67,12 @@ function AddPledge({ projectId }) {
         label="Add a comment"
         placeholder="Wow that dog is so cool"
         onChange={handleChange}
+      />
+      <ToggleButton
+        valueOne="Yes please!"
+        valueTwo="Nah, I'm good"
+        label="Send pledge anonymously?"
+        onButtonClick={onButtonClick}
       />
       <Button value="Send Support!" onClick={handleSubmit} type="button" />
     </div>

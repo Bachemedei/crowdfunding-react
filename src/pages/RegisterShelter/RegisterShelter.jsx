@@ -5,7 +5,9 @@ import AnimalCategories from "../../components/AnimalCategories/AnimalCategories
 import Button from "../../components/Button/Button"
 import TextArea from "../../components/TextAreaInput/TextArea"
 import TextInput from "../../components/TextInput/TextInput"
+import TextInputWithInfo from "../../components/TextInputWithInfo/TextInputWithInfo"
 import TitleText from "../../components/TitleText/TitleText"
+import ToolTip from "../../components/ToolTip/ToolTip"
 import "./RegisterShelter.css"
 
 function RegisterShelter() {
@@ -59,7 +61,7 @@ function RegisterShelter() {
 
     errors.charityregister =
       shelterDetails.charityregister.length !== 9
-        ? "ACNC Charity Register ID must be 11 digits long!"
+        ? "ACNC Charity Register ID must be 9 digits long!"
         : ""
 
     errors.species =
@@ -152,13 +154,14 @@ function RegisterShelter() {
         onChange={handleChange}
         error={errorMessages.address}
       />
-      <TextInput
+      <TextInputWithInfo
         id="charityregister"
         type="text"
         label="ACNC Charity Register ID"
-        placeholder="11 Digit ACNC ID"
+        placeholder="9 Digit ACNC ID"
         onChange={handleChange}
         error={errorMessages.charityregister}
+        toolTipInfo="Animal Rescues must be registered with the Australian Charity and Not-For-Profit Commission to raise funds on earlyadoptr"
       />
       <AnimalCategories
         label="Select Animals You Rescue"

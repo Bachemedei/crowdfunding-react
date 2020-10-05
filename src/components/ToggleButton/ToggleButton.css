@@ -21,16 +21,17 @@ label {
   font-size: 1.7vw;
   text-align: center;
   transition: all 0.2s;
-  width: 10vw;
+  width: 14vw;
   cursor: pointer;
+  text-align: center;
 }
 
-.Active {
+.active {
   color: #efe9e9;
   background-color: black;
 }
 
-.Inactive {
+.inactive {
   color: #000000;
   background-color: #efe9e9;
 }
