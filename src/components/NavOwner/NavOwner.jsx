@@ -1,7 +1,34 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react"
+import { Link, useHistory } from "react-router-dom"
+import FullPageLoader from "../FullPageLoader/FullPageLoader"
 
 function NavOwner({ logOut }) {
+  const history = useHistory()
+  const [loading, setLoading] = useState(true)
+  const [shelterIsApproved, setShelterApproved] = useState(null)
+  const [shelterName, setName] = useState("")
+
+  useEffect(() => {
+    const userID = window.localStorage.getItem("userID")
+    let isMounted = true
+
+    fetch(`${process.env.REACT_APP_API_URL}${userID}/shelter/`)
+      .then((results) => {
+        return results.json()
+      })
+      .then((data) => {
+        if (isMounted) setShelterApproved(data.is_approved)
+        if (isMounted) setLoading(false)
+        if (isMounted) setName(data.name)
+      })
+    return () => {
+      isMounted = false
+    }
+  }, [history])
+
+  if (loading) {
+    return <FullPageLoader />
+  }
   return (
     <nav className="nav">
       <Link className="nav-link nav-home" to="/">
@@ -10,14 +37,21 @@ function NavOwner({ logOut }) {
       <Link className="nav-link nav-profile" to="/profile">
         Profile
       </Link>
-      <Link className="nav-link nav-project" to="/create-project">
-        Create A Project
+      <Link className="nav-link shelter-profile" to="/shelter-profile">
+        {shelterName}
       </Link>
+      {shelterIsApproved ? (
+        <Link className="nav-link nav-project" to="/create-project">
+          Create A Project
+        </Link>
+      ) : (
+        <></>
+      )}
       <Link className="nav-link nav-logout" to="/login" onClick={logOut}>
         Log Out
       </Link>
     </nav>
-  );
+  )
 }
 
-export default NavOwner;
+export default NavOwner

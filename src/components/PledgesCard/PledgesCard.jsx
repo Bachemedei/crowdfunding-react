@@ -3,12 +3,19 @@ import PledgeInfo from "../PledgeInfo/PledgeInfo"
 import Button from "../Button/Button"
 import "./PledgesCard.css"
 import AddPledge from "../AddPledge/AddPledge"
+import { useHistory } from "react-router-dom"
 
 function PledgesCard({ projectData }) {
+  const history = useHistory()
   const [pledgeForm, setPledgeForm] = useState(false)
 
   const handleClick = () => {
-    setPledgeForm(!pledgeForm)
+    const userID = window.localStorage.getItem("userID")
+    if (userID == null) {
+      history.push("/login")
+    } else {
+      setPledgeForm(!pledgeForm)
+    }
   }
   return (
     <div className="pledges-list">
