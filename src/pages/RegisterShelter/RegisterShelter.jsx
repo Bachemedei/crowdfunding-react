@@ -162,6 +162,7 @@ function RegisterShelter() {
         label="Select Animals You Rescue"
         onAnimalClick={onAnimalClick}
         error={errorMessages.species}
+        initState={[]}
       />
       <TextArea
         id="description"

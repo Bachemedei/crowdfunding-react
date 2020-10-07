@@ -33,7 +33,7 @@ function OwnerRoute({ path, ...props }) {
   }, [history])
 
   if (loading) {
-    return <FullPageLoader />
+    return null
   } else if (shelterIsApproved) {
     return props.children
   } else if (shelterIsApproved == null) {

@@ -1,40 +1,40 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import FullPageLoader from "../FullPageLoader/FullPageLoader";
+import React, { useEffect, useState } from "react"
+import { useHistory } from "react-router-dom"
+import FullPageLoader from "../FullPageLoader/FullPageLoader"
 
 function PrivateRoute({ path, ...props }) {
-  const [loading, setLoading] = useState(true);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true)
+  const [loggedIn, setLoggedIn] = useState(false)
 
-  const history = useHistory();
+  const history = useHistory()
 
   const isAuthenticated = () => {
-    const token = window.localStorage.getItem("token");
+    const token = window.localStorage.getItem("token")
     if (token != null) {
-      return true;
+      return true
     }
-    return false;
-  };
+    return false
+  }
 
   useEffect(() => {
     if (isAuthenticated()) {
-      setLoading(false);
-      setLoggedIn(true);
+      setLoading(false)
+      setLoggedIn(true)
     } else {
-      setLoading(false);
+      setLoading(false)
     }
-  }, []);
+  }, [])
 
   if (loading) {
-    return <FullPageLoader />;
+    return null
   }
 
   if (loggedIn) {
-    return props.children;
+    return props.children
   } else {
-    history.push("/login");
-    return null;
+    history.push("/login")
+    return null
   }
 }
 
-export default PrivateRoute;
+export default PrivateRoute

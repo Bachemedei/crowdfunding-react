@@ -27,7 +27,8 @@ function NavOwner({ logOut }) {
   }, [history])
 
   if (loading) {
-    return <FullPageLoader />
+    // return <FullPageLoader />
+    return null
   }
   return (
     <nav className="nav">

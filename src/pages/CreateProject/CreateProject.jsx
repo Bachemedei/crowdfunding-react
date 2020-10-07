@@ -165,6 +165,7 @@ function CreateProject() {
         label="Select Animal Species"
         onAnimalClick={onAnimalClick}
         error={errorMessages.species}
+        initState={[]}
       />
       <Button value="Create Project" onClick={handleSubmit} type="submit" />
     </div>

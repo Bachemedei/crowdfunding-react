@@ -4,7 +4,6 @@ import AnimalLogo from "../AnimalLogo/AnimalLogo"
 import "./ShelterDetails.css"
 
 function ShelterDetails({ shelterDetails, ...props }) {
-  console.log(shelterDetails)
   return (
     <div className="shelter-details">
       <div className="edit-btn">

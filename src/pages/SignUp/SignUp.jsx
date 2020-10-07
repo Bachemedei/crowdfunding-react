@@ -150,6 +150,7 @@ function SignUp() {
         onChange={handleChange}
         onAnimalClick={onAnimalClick}
         error={errorMessages.petlikes}
+        initState={[]}
       />
       <TextArea
         id="bio"
