@@ -76,6 +76,7 @@ function EditProfile({ userProfile }) {
         label="Select Your Favourite Animals"
         onChange={handleChange}
         onAnimalClick={onAnimalClick}
+        initState={userProfile.petlikes}
       />
       <TextArea
         id="bio"
