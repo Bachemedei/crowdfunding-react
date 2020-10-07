@@ -18,7 +18,7 @@ function HomePage({ convertDateTime }) {
       })
       .then((data) => {
         setProjectList(data)
-        setLoading(false)
+        // setLoading(false)
       })
   }, [userID])
 
