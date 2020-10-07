@@ -110,7 +110,7 @@ function EditProject({ projectData }) {
       <AnimalCategories
         label="Select Animal Species"
         onAnimalClick={onAnimalClick}
-        initState={projectData.petlikes}
+        initState={projectData.species}
       />
       <Button value="Edit Project" onClick={handleSubmit} type="submit" />
     </div>

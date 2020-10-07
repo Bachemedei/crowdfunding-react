@@ -9,7 +9,7 @@ function ShelterDetails({ shelterDetails, ...props }) {
     <div className="shelter-details">
       <div className="edit-btn">
         <h3>Animals at {shelterDetails.name}: </h3>
-        <EditButton contentOwner={shelterDetails.id} {...props} />
+        <EditButton contentOwner={shelterDetails.owner_id} {...props} />
       </div>
       <div className="shelter-pets">
         <div className="pet-likes">

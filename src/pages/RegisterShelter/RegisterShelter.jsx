@@ -7,7 +7,6 @@ import TextArea from "../../components/TextAreaInput/TextArea"
 import TextInput from "../../components/TextInput/TextInput"
 import TextInputWithInfo from "../../components/TextInputWithInfo/TextInputWithInfo"
 import TitleText from "../../components/TitleText/TitleText"
-import ToolTip from "../../components/ToolTip/ToolTip"
 import "./RegisterShelter.css"
 
 function RegisterShelter() {
@@ -30,10 +29,6 @@ function RegisterShelter() {
     species: "",
     charityregister: "",
   })
-
-  const openModal = () => {
-    setIsOpen(true)
-  }
 
   const closeModal = () => {
     setIsOpen(false)

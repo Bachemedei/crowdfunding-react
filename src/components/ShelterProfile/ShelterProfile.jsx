@@ -27,27 +27,27 @@ function ShelterProfile({ convertDateTime }) {
   }
 
   useEffect(() => {
-    let shelterID = undefined
     fetch(`${process.env.REACT_APP_API_URL}${userID}/shelter/`)
       .then((results) => {
-        shelterID = results.id
         return results.json()
       })
       .then((data) => {
         setShelterDetails(data)
         setLoading(false)
       })
-    if (shelterID != null) {
-      fetch(`${process.env.REACT_APP_API_URL}${shelterID}/shelter-projects/`)
-        .then((results) => {
-          return results.json()
-        })
-        .then((data) => {
-          setProjectList(data)
-          setLoading(false)
-        })
-    }
-  }, [id, userID])
+      .then(() => {
+        fetch(
+          `${process.env.REACT_APP_API_URL}${shelterDetails.id}/shelter-projects/`
+        )
+          .then((results) => {
+            return results.json()
+          })
+          .then((data) => {
+            setProjectList(data)
+            setLoading(false)
+          })
+      })
+  }, [id, userID, shelterDetails.id])
 
   if (loading) {
     return <FullPageLoader />

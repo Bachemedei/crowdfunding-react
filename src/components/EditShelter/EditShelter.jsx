@@ -146,7 +146,7 @@ function EditShelter({ shelterData }) {
         label="Select Animals You Rescue"
         value={shelterData.species}
         onAnimalClick={onAnimalClick}
-        initState={shelterData.petlikes}
+        initState={shelterData.species}
         // error={errorMessages.species}
       />
       <TextArea

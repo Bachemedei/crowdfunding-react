@@ -4,8 +4,6 @@ import "./EditButton.css"
 
 function EditButton({ contentOwner, ...props }) {
   const userID = window.localStorage.getItem("userID")
-  console.log("contentOwner", contentOwner)
-  console.log("userID", userID)
 
   if (`${contentOwner}` === userID) {
     return (

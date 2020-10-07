@@ -35,22 +35,22 @@ function ProjectPage({ convertDateTime }) {
     setEditProject(!editProject)
   }
 
-  const handleDeleteClick = () => {
-    fetch(`${process.env.REACT_APP_API_URL}projects/${id}/`, {
-      method: "delete",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`,
-      },
-    })
-      .then((results) => {
-        history.push("/")
-        return results.text()
-      })
-      .then((data) => {
-        console.log(data)
-      })
-  }
+  // const handleDeleteClick = () => {
+  //   fetch(`${process.env.REACT_APP_API_URL}projects/${id}/`, {
+  //     method: "delete",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Token ${token}`,
+  //     },
+  //   })
+  //     .then((results) => {
+  //       history.push("/")
+  //       return results.text()
+  //     })
+  //     .then((data) => {
+  //       console.log(data)
+  //     })
+  // }
 
   if (loading) {
     return <FullPageLoader />
@@ -71,11 +71,6 @@ function ProjectPage({ convertDateTime }) {
             onClick={handleEditClick}
           />
           <DeleteProject contentOwner={projectData.owner_id} />
-          {/* <DeleteButton
-            contentOwner={projectData.owner_id}
-            onClick={openModal}
-          /> */}
-          <DeleteProject handleDeleteClick={handleDeleteClick} />
         </div>
         <div className="project-summary">
           <div className="img-and-icon">

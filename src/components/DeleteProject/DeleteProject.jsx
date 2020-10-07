@@ -23,6 +23,8 @@ function DeleteProject({ contentOwner }) {
     },
   }
 
+  Modal.setAppElement("#root")
+
   const openModal = () => {
     setIsOpen(true)
   }
@@ -50,7 +52,6 @@ function DeleteProject({ contentOwner }) {
 
   return (
     <div>
-      {/* <Button onClick={openModal} value="Delete" type="button" /> */}
       <DeleteButton onClick={openModal} contentOwner={contentOwner} />
       <Modal
         className="delete-modal"
