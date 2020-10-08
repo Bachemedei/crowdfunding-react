@@ -21,7 +21,11 @@
 .name-and-button {
   display: flex;
   justify-content: space-between;
-  width: 80%;
+  width: 100%;
+}
+
+.name-and-button .edit-button {
+  flex-grow: 0;
 }
 
 .profile-right h3 {
