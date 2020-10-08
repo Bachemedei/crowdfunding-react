@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import TextInput from "../TextInput/TextInput"
 import TextArea from "../TextAreaInput/TextArea"
 import Button from "../Button/Button"
@@ -9,12 +9,40 @@ function AddPledge({ projectId }) {
   const user = window.localStorage.getItem("userID")
   const token = window.localStorage.getItem("token")
   const [pledge, setPledge] = useState({
-    amount: undefined,
+    amount: "",
     comment: "",
     anonymous: false,
     supporter: user,
     project_id: projectId,
   })
+  const [errorMessages, setErrors] = useState({
+    amount: "",
+    comment: "",
+  })
+
+  const validAmountRegex = RegExp(/[0-9]{1,}/)
+
+  const validateInput = () => {
+    let errors = { ...errorMessages }
+
+    errors.amount = validAmountRegex.test(pledge.amount)
+      ? ""
+      : "Enter an amount valid whole number amount"
+
+    errors.comment = pledge.comment.length < 1 ? "Please enter a comment" : ""
+
+    return errors
+  }
+
+  // Find an if an instance of an error message exists, and return either true or false
+  const validateForm = () => {
+    const errors = validateInput()
+    const firstValidationError = Object.values(errors).find(
+      (error) => error.length > 0
+    )
+    setErrors(errors)
+    return firstValidationError === undefined
+  }
 
   const handleChange = (e) => {
     const { id, value } = e.target
@@ -23,6 +51,11 @@ function AddPledge({ projectId }) {
       [id]: value,
     }))
   }
+
+  useEffect(() => {
+    const match = validAmountRegex.exec(pledge.amount)
+    if (match) pledge.amount = match[0]
+  }, [pledge.amount, validAmountRegex])
 
   const postData = async () => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}pledges/`, {
@@ -38,7 +71,7 @@ function AddPledge({ projectId }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (pledge.amount && pledge.comment) {
+    if (validateForm(errorMessages)) {
       postData().then((response) => {
         window.location.reload()
       })
@@ -60,6 +93,7 @@ function AddPledge({ projectId }) {
         label="Amount"
         placeholder="$100"
         onChange={handleChange}
+        error={errorMessages.amount}
       />
       <TextArea
         id="comment"
@@ -67,6 +101,7 @@ function AddPledge({ projectId }) {
         label="Add a comment"
         placeholder="Wow that dog is so cool"
         onChange={handleChange}
+        error={errorMessages.comment}
       />
       <ToggleButton
         valueOne="Yes please!"

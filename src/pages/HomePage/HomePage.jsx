@@ -28,7 +28,9 @@ function HomePage({ convertDateTime }) {
   return (
     <div className="project-cards">
       <TitleText
-        title={userID != null ? "Recommended Projects" : "Featured Projects"}
+        title={
+          userID != null ? "Recommended Projects For You" : "Featured Projects"
+        }
       />
       {projectList.map((projectData, key) => {
         return (
