@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import FullPageLoader from "../FullPageLoader/FullPageLoader"
-import TitleText from "../TitleText/TitleText"
-import ProjectCard from "../ProjectCard/ProjectCard"
-import EditShelter from "../EditShelter/EditShelter"
-import ShelterDetails from "../ShelterDetails/ShelterDetails"
+import FullPageLoader from "../../components/FullPageLoader/FullPageLoader"
+import TitleText from "../../components/TitleText/TitleText"
+import ProjectCard from "../../components/ProjectCard/ProjectCard"
+import EditShelter from "../../components/EditShelter/EditShelter"
+import ShelterDetails from "../../components/ShelterDetails/ShelterDetails"
 
 function ShelterProfile({ convertDateTime }) {
   const [shelterDetails, setShelterDetails] = useState({

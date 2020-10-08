@@ -28,8 +28,10 @@ function ProjectCard({ projectData, convertDateTime }) {
             date={convertDateTime(projectData.date_created)}
           />
         </Link>
-        <h3>{projectData.shelter}</h3>
-        <ProgressBar data={projectData} />
+        <Link to={`/shelter-profile/${projectData.shelter_id}`}>
+          <h3>{projectData.shelter}</h3>
+          <ProgressBar data={projectData} />
+        </Link>
       </div>
     </div>
   )

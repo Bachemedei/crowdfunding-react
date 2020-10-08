@@ -4,6 +4,7 @@ import Button from "../../components/Button/Button"
 import TextArea from "../../components/TextAreaInput/TextArea"
 import TextInput from "../../components/TextInput/TextInput"
 import TitleText from "../../components/TitleText/TitleText"
+import ToggleButton from "../../components/ToggleButton/ToggleButton"
 import "./EditProject.css"
 
 function EditProject({ projectData }) {
@@ -39,6 +40,13 @@ function EditProject({ projectData }) {
     }
   }
 
+  const onButtonClick = (activeButton) => {
+    setUpdatedProject((project) => ({
+      ...project,
+      is_open: activeButton,
+    }))
+  }
+
   const putData = async () => {
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}projects/${projectData.id}/`,
@@ -65,6 +73,13 @@ function EditProject({ projectData }) {
   return (
     <div className="edit-project-form">
       <TitleText title="Edit Project" />
+      <ToggleButton
+        valueOne="Active"
+        valueTwo="Inactive"
+        label="Project Status"
+        initState={projectData.is_open}
+        onButtonClick={onButtonClick}
+      />
       <TextInput
         id="title"
         type="text"

@@ -13,7 +13,9 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute"
 import "./App.css"
 import CreateProject from "./pages/CreateProject/CreateProject"
 import OwnerRoute from "./components/PrivateRouteOwner/OwnerRoute"
-import ShelterProfile from "./components/ShelterProfile/ShelterProfile"
+import ShelterProfile from "./pages/ShelterProfile/ShelterProfile"
+import PublicShelterProfile from "./pages/PublicShelterProfile/ShelterProfile"
+import PublicUserProfile from "./pages/PublicUserProfile/UserProfile"
 
 function App() {
   // Variables
@@ -62,12 +64,18 @@ function App() {
             <OwnerRoute path="/create-project">
               <CreateProject />
             </OwnerRoute>
-            <Route path="/profile">
+            <Route path="/profile/:id">
+              <PublicUserProfile convertDateTime={convertDateTime} />
+            </Route>
+            <PrivateRoute path="/profile">
               <UserProfile convertDateTime={convertDateTime} />
+            </PrivateRoute>
+            <Route path="/shelter-profile/:id">
+              <PublicShelterProfile convertDateTime={convertDateTime} />
             </Route>
-            <Route path="/shelter-profile">
+            <PrivateRoute path="/shelter-profile/">
               <ShelterProfile convertDateTime={convertDateTime} />
-            </Route>
+            </PrivateRoute>
             <Route path="/">
               <Home convertDateTime={convertDateTime} />
             </Route>

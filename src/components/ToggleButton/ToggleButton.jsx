@@ -1,9 +1,18 @@
 import React, { useState } from "react"
 import "./ToggleButton.css"
 
-function ToggleButton({ onButtonClick, valueOne, valueTwo, label, ...props }) {
+function ToggleButton({
+  onButtonClick,
+  valueOne,
+  valueTwo,
+  label,
+  initState,
+  ...props
+}) {
   let value = valueTwo
-  const [activeButton, setActiveButton] = useState({ active: false })
+  const [activeButton, setActiveButton] = useState({
+    active: initState !== null ? initState : false,
+  })
 
   const handleClick = () => {
     const buttonClicked = { ...activeButton }

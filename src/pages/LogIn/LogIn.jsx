@@ -77,11 +77,9 @@ function LogIn() {
       postData().then((response) => {
         window.localStorage.setItem("token", response.token)
         window.localStorage.setItem("userID", response.user_id)
-        console.log(response)
         if (response.token != null) {
           history.push("/")
         } else {
-          console.log(response.non_field_errors)
           let errors = { ...errorMessages }
           errors.username = response.non_field_errors
           errors.password = response.non_field_errors
