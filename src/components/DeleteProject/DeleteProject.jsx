@@ -51,7 +51,7 @@ function DeleteProject({ contentOwner }) {
   }
 
   return (
-    <div>
+    <div className="delete-project">
       <DeleteButton onClick={openModal} contentOwner={contentOwner} />
       <Modal
         className="delete-modal"

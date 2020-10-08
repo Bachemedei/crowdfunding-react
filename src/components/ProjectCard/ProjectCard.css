@@ -16,6 +16,12 @@
   padding: 3vw;
   justify-content: space-evenly;
 }
+.rhs-card {
+  width: 100%;
+}
+.rhs-card h2 {
+  text-align: left;
+}
 
 .project-card-text {
   font-family: "Roboto", sans-serif;

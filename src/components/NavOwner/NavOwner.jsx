@@ -9,6 +9,7 @@ function NavOwner({ logOut }) {
 
   useEffect(() => {
     const userID = window.localStorage.getItem("userID")
+    console.log(userID)
     let isMounted = true
 
     fetch(`${process.env.REACT_APP_API_URL}${userID}/shelter/`)
@@ -16,6 +17,7 @@ function NavOwner({ logOut }) {
         return results.json()
       })
       .then((data) => {
+        console.log(data.is_approved)
         if (isMounted) setShelterApproved(data.is_approved)
         if (isMounted) setLoading(false)
         if (isMounted) setName(data.name)

@@ -15,6 +15,7 @@ function Nav() {
   useEffect(() => {
     const token = window.localStorage.getItem("token")
     const isOwner = window.localStorage.getItem("is_owner")
+    console.log(isOwner)
     token != null ? setLoggedIn(true) : setLoggedIn(false)
     isOwner === "true" ? setOwnerStatus(true) : setOwnerStatus(false)
   }, [location])

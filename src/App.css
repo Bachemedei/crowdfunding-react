@@ -18,7 +18,92 @@ a {
 
 .contents {
   background-color: #f9f9f9;
-  padding: 2vw;
+  padding: 4vw;
   margin: 3vw;
   border-radius: 0.3em;
+}
+
+@media (max-width: 800px) {
+  html {
+    margin: 4vw;
+    font-size: 3vw;
+  }
+  .form-input {
+    width: 90%;
+    font-size: 2vw;
+  }
+  .btn {
+    font-size: 3vw;
+  }
+  .title-text {
+    font-size: 3.5vw;
+  }
+  h2 {
+    font-size: 3.5vw;
+  }
+
+  h3 {
+    font-size: 3.2vw;
+  }
+
+  .project-status {
+    font-size: 2vw;
+  }
+
+  .progress-label {
+    font-size: 2vw;
+  }
+
+  .pledges-list {
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  html {
+    margin: 1vw;
+    font-size: 4vw;
+  }
+
+  a {
+    font-size: 3vw;
+  }
+
+  .form-input {
+    width: 100%;
+    font-size: 3vw;
+    padding: 1vw;
+  }
+
+  .btn {
+    font-size: 4vw;
+  }
+
+  .btn-toggle {
+    font-size: 3vw;
+  }
+
+  .project-status {
+    font-size: 3vw;
+  }
+
+  .progress-label {
+    font-size: 2.5vw;
+  }
+
+  .pledges-list {
+    width: 95%;
+  }
+
+  .pledge {
+    width: 90%;
+  }
+
+  .pledge-form {
+    width: 90%;
+  }
+
+  .pledge-form .form-input {
+    width: 90%;
+  }
 }

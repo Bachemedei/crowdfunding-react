@@ -1,23 +1,23 @@
 .progress-ctn {
-    margin-bottom: 2vw;
+  margin-bottom: 2vw;
 }
 
-.progress-bar{
-    height: 20px;
-    width: 100%;
-    background-color: #e0e0de;
-    border-radius: 50px;
+.progress-bar {
+  height: 20px;
+  width: 90%;
+  background-color: #e0e0de;
+  border-radius: 50px;
 }
 
-.progress-complete{
-    height: 100%;
-    background-color: green;
-    border-radius: inherit;
-    text-align: center;
+.progress-complete {
+  height: 100%;
+  background-color: green;
+  border-radius: inherit;
+  text-align: center;
 }
 
-.progress-label{
-    padding: 5px;
-    color: black;
-    font-size: 1.5vw;
+.progress-label {
+  padding: 5px;
+  color: black;
+  font-size: 1.5vw;
 }

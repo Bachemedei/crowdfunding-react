@@ -20,7 +20,7 @@ function ProjectCard({ projectData, convertDateTime }) {
           })}
         </div>
       </div>
-      <div>
+      <div className="rhs-card">
         <Link to={`/project/${projectData.id}`}>
           <h2>{projectData.title}</h2>
           <ProjectStatus

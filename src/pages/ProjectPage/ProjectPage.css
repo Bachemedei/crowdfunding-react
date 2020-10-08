@@ -1,10 +1,19 @@
 .owner-options {
   display: flex;
   justify-content: flex-end;
+  margin-left: 70%;
 }
 
-.owner-options input {
-  width: 10vw;
+.edit-button {
+  flex-grow: 1;
+}
+
+.edit-button input {
+  width: 100%;
+}
+
+.delete-project {
+  flex-grow: 1;
 }
 
 .project-detail {
