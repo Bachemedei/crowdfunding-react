@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import AnimalCategories from "../../components/AnimalCategories/AnimalCategories"
 import Button from "../../components/Button/Button"
 import TextArea from "../../components/TextAreaInput/TextArea"
@@ -21,6 +21,13 @@ function EditProject({ projectData }) {
       [id]: value,
     }))
   }
+
+  const validAmountRegex = RegExp(/[0-9]{1,}/)
+
+  useEffect(() => {
+    const match = validAmountRegex.exec(updatedProject.goal)
+    if (match) updatedProject.goal = match[0]
+  }, [updatedProject.goal, validAmountRegex])
 
   // This triggers when an animal logo is clicked and adds or removes that animal to the petlike value of state
   const onAnimalClick = (animal, selected) => {
@@ -107,13 +114,6 @@ function EditProject({ projectData }) {
         label="Image URL"
         onChange={handleChange}
         value={projectData.image}
-      />
-      <TextInput
-        id="is_open"
-        type="text"
-        label="Project Status"
-        onChange={handleChange}
-        value={projectData.is_open}
       />
       <TextInput
         id="date_created"

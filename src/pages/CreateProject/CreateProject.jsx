@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import AnimalCategories from "../../components/AnimalCategories/AnimalCategories"
 import Button from "../../components/Button/Button"
@@ -33,6 +33,9 @@ function CreateProject() {
   })
 
   // Methods
+
+  const validAmountRegex = RegExp(/[0-9]{1,}/)
+
   // Check input to check if it matches requirements and set error state
   const validateInput = () => {
     let errors = { ...errorMessages }
@@ -42,7 +45,9 @@ function CreateProject() {
     errors.description =
       project.description.length < 5 ? "Enter a longer description" : ""
 
-    errors.goal = project.goal.length < 1 ? "Enter a financial goal" : ""
+    errors.goal = validAmountRegex.test(project.goal)
+      ? ""
+      : "Enter an amount valid whole number amount"
 
     errors.image = project.image.length < 8 ? "Enter a valid image URL" : ""
 
@@ -72,6 +77,11 @@ function CreateProject() {
       [id]: value,
     }))
   }
+
+  useEffect(() => {
+    const match = validAmountRegex.exec(project.goal)
+    if (match) project.goal = match[0]
+  }, [project.goal, validAmountRegex])
 
   // This triggers when an animal logo is clicked and adds or removes that animal to the petlike value of state
   const onAnimalClick = (animal, selected) => {
