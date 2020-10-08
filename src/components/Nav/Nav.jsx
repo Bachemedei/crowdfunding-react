@@ -1,35 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
-import NavOwner from "../NavOwner/NavOwner";
-import NavSupporter from "../NavSupporter/NavSupporter";
-import "./Nav.css";
-// import FullPageLoader from "../FullPageLoader/FullPageLoader";
+import React, { useState, useEffect } from "react"
+import { Link, useHistory, useLocation } from "react-router-dom"
+import NavOwner from "../NavOwner/NavOwner"
+import NavSupporter from "../NavSupporter/NavSupporter"
+import "./Nav.css"
 
 function Nav() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [ownerStatus, setOwnerStatus] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [ownerStatus, setOwnerStatus] = useState(false)
   // const [loading, setLoading] = useState(true);
 
-  const history = useHistory();
-  const location = useLocation();
+  const history = useHistory()
+  const location = useLocation()
 
   useEffect(() => {
-    const token = window.localStorage.getItem("token");
-    const isOwner = window.localStorage.getItem("is_owner");
-    token != null ? setLoggedIn(true) : setLoggedIn(false);
-    isOwner === "true" ? setOwnerStatus(true) : setOwnerStatus(false);
-  }, [location]);
+    const token = window.localStorage.getItem("token")
+    const isOwner = window.localStorage.getItem("is_owner")
+    token != null ? setLoggedIn(true) : setLoggedIn(false)
+    isOwner === "true" ? setOwnerStatus(true) : setOwnerStatus(false)
+  }, [location])
 
   const logOut = () => {
-    window.localStorage.clear();
-    history.push("/login");
-  };
+    window.localStorage.clear()
+    history.push("/login")
+  }
 
   if (loggedIn === true) {
     if (ownerStatus === true) {
-      return <NavOwner logOut={logOut} />;
+      return <NavOwner logOut={logOut} />
     }
-    return <NavSupporter logOut={logOut} />;
+    return <NavSupporter logOut={logOut} />
   } else {
     return (
       <nav className="nav">
@@ -43,8 +42,8 @@ function Nav() {
           Sign Up
         </Link>
       </nav>
-    );
+    )
   }
 }
 
-export default Nav;
+export default Nav

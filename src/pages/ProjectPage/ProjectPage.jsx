@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useParams, useHistory } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import AnimalLogo from "../../components/AnimalLogo/AnimalLogo"
 import EditButton from "../../components/EditButton/EditButton"
 import PledgesCard from "../../components/PledgesCard/PledgesCard"
@@ -7,14 +7,11 @@ import ProgressBar from "../../components/ProgressBar/ProgressBar"
 import ProjectStatus from "../../components/ProjectStatus/ProjectStatus"
 import TitleText from "../../components/TitleText/TitleText"
 import FullPageLoader from "../../components/FullPageLoader/FullPageLoader"
-import "./ProjectPage.css"
-import DeleteButton from "../../components/DeleteButton/DeleteButton"
 import EditProject from "../../components/EditProject/EditProject"
 import DeleteProject from "../../components/DeleteProject/DeleteProject"
+import "./ProjectPage.css"
 
 function ProjectPage({ convertDateTime }) {
-  const token = window.localStorage.getItem("token")
-  const history = useHistory()
   const [projectData, setProjectData] = useState({ pledges: [] })
   const [editProject, setEditProject] = useState(false)
   const [loading, setLoading] = useState(true)

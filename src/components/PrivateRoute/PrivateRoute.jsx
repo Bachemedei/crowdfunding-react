@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
-import FullPageLoader from "../FullPageLoader/FullPageLoader"
 
 function PrivateRoute({ path, ...props }) {
   const [loading, setLoading] = useState(true)

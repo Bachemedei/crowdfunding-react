@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import { Link, useHistory } from "react-router-dom"
-import FullPageLoader from "../FullPageLoader/FullPageLoader"
 
 function NavOwner({ logOut }) {
   const history = useHistory()
