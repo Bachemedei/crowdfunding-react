@@ -18,6 +18,8 @@ function ToolTip({ toolTipInfo }) {
         className="tooltip-icon"
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
+        onTouchStart={handleMouseOver}
+        onTouchEnd={handleMouseOut}
       >
         i
       </button>

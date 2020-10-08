@@ -3,3 +3,11 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.edit-btn .edit-button {
+  flex-grow: 0;
+}
+
+.pet-likes {
+  justify-content: flex-start;
+}
