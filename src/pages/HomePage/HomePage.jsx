@@ -34,16 +34,25 @@ function HomePage({ convertDateTime }) {
   }
   return (
     <div className="project-cards">
-      <TitleText
-        title={!seeAll ? "Recommended Projects For You" : "Featured Projects"}
-      />
-      <ToggleButton
-        valueOne="See Recommended"
-        valueTwo="See All"
-        label=""
-        initState={seeAll}
-        onButtonClick={onButtonClick}
-      />
+      {userID != null ? (
+        <>
+          <TitleText
+            title={
+              !seeAll ? "Recommended Projects For You" : "Featured Projects"
+            }
+          />
+          <ToggleButton
+            valueOne="See Recommended"
+            valueTwo="See All"
+            label=""
+            initState={seeAll}
+            onButtonClick={onButtonClick}
+          />
+        </>
+      ) : (
+        <TitleText title="Featured Projects" />
+      )}
+
       {projectList.map((projectData, key) => {
         return (
           <ProjectCard
