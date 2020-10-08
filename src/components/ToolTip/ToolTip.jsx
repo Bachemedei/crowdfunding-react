@@ -14,15 +14,17 @@ function ToolTip({ toolTipInfo }) {
 
   return (
     <div className="tooltip-container">
-      <button
+      <input
+        type="button"
+        value="i"
         className="tooltip-icon"
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
         onTouchStart={handleMouseOver}
         onTouchEnd={handleMouseOut}
-      >
-        i
-      </button>
+      />
+      {/* i
+      </input> */}
       {showToolTip ? (
         <div className="tooltip right">
           <div className="tooltip-arrow" />
