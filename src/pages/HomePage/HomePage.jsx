@@ -2,16 +2,19 @@ import React, { useState, useEffect } from "react"
 import ProjectCard from "../../components/ProjectCard/ProjectCard"
 import TitleText from "../../components/TitleText/TitleText"
 import FullPageLoader from "../../components/FullPageLoader/FullPageLoader"
+import ToggleButton from "../../components/ToggleButton/ToggleButton"
 import "./HomePage.css"
 
 function HomePage({ convertDateTime }) {
+  let url = "projects/"
+  const userID = window.localStorage.getItem("userID")
   const [projectList, setProjectList] = useState([])
   const [loading, setLoading] = useState(true)
-  const userID = window.localStorage.getItem("userID")
+  const [seeAll, setSeeAll] = useState(false)
 
   useEffect(() => {
-    let url = "projects/"
-    if (userID != null) url = `${userID}/recommended/`
+    setLoading(true)
+    if (userID != null && !seeAll) url = `${userID}/recommended/`
     fetch(`${process.env.REACT_APP_API_URL}${url}`)
       .then((results) => {
         return results.json()
@@ -20,7 +23,11 @@ function HomePage({ convertDateTime }) {
         setProjectList(data)
         setLoading(false)
       })
-  }, [userID])
+  }, [userID, seeAll])
+
+  const onButtonClick = (activeButton) => {
+    setSeeAll(activeButton)
+  }
 
   if (loading) {
     return <FullPageLoader />
@@ -28,9 +35,14 @@ function HomePage({ convertDateTime }) {
   return (
     <div className="project-cards">
       <TitleText
-        title={
-          userID != null ? "Recommended Projects For You" : "Featured Projects"
-        }
+        title={!seeAll ? "Recommended Projects For You" : "Featured Projects"}
+      />
+      <ToggleButton
+        valueOne="See Recommended"
+        valueTwo="See All"
+        label=""
+        initState={seeAll}
+        onButtonClick={onButtonClick}
       />
       {projectList.map((projectData, key) => {
         return (

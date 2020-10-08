@@ -9,9 +9,10 @@ function ToggleButton({
   initState,
   ...props
 }) {
-  let value = valueTwo
+  // let value = valueTwo
+  console.log(initState)
   const [activeButton, setActiveButton] = useState({
-    active: initState !== null ? initState : false,
+    active: initState != null ? initState : false,
   })
 
   const handleClick = () => {
@@ -19,13 +20,13 @@ function ToggleButton({
     buttonClicked.active = !buttonClicked.active
     setActiveButton(buttonClicked)
     onButtonClick(buttonClicked.active)
-    return value
+    // return value
   }
 
   return (
     <form className="btn-toggle-container">
       <label>
-        {label}:
+        {label}
         <input
           className={`btn-toggle ${
             activeButton.active ? `active` : `inactive`
