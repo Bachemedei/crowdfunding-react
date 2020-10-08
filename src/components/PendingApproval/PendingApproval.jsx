@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import "./ToolTip.css"
+import "./PendingApproval.css"
 
-function ToolTip({ toolTipInfo }) {
+function PendingApproval({ toolTipInfo }) {
   const [showToolTip, setToolTip] = useState(false)
 
   const handleMouseOver = (e) => {
@@ -13,18 +13,18 @@ function ToolTip({ toolTipInfo }) {
   }
 
   return (
-    <div className="tooltip-container">
+    <div className="approval-container">
       <input
+        className="approval-btn"
         type="button"
-        value="i"
-        className="tooltip-icon"
+        value="Pending Approval"
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
         onTouchStart={handleMouseOver}
         onTouchEnd={handleMouseOut}
       />
       {showToolTip ? (
-        <div className="tooltip right">
+        <div className="tooltip bottom">
           <div className="tooltip-arrow" />
           <div className="tooltip-label">{toolTipInfo}</div>
         </div>
@@ -35,4 +35,4 @@ function ToolTip({ toolTipInfo }) {
   )
 }
 
-export default ToolTip
+export default PendingApproval

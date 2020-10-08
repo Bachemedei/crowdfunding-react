@@ -5,6 +5,8 @@ import TitleText from "../../components/TitleText/TitleText"
 import ProjectCard from "../../components/ProjectCard/ProjectCard"
 import EditShelter from "../../components/EditShelter/EditShelter"
 import ShelterDetails from "../../components/ShelterDetails/ShelterDetails"
+import PendingApproval from "../../components/PendingApproval/PendingApproval"
+import "./ShelterProfile.css"
 
 function ShelterProfile({ convertDateTime }) {
   const [shelterDetails, setShelterDetails] = useState({
@@ -61,7 +63,13 @@ function ShelterProfile({ convertDateTime }) {
           </>
         ) : (
           <>
-            <TitleText title={shelterDetails.name} />
+            {shelterDetails.is_approved ? (
+              <></>
+            ) : (
+              <PendingApproval toolTipInfo="Admin have not yet approved your shelter, once approved you will be able to submit projects" />
+            )}
+
+            <TitleText className="title-text" title={shelterDetails.name} />
             <ShelterDetails
               shelterDetails={shelterDetails}
               onClick={handleClick}
